@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Func from './Team Wall/TeamWall'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -32,9 +33,4 @@ function App() {
   )
 }
 
-//testing
-
-//Testing again <3
-
-//3 test
 export default App
