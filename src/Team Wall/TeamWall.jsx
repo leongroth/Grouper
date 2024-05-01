@@ -1,14 +1,34 @@
-import React, {useState} from "react"
+import React, { useState } from "react";
 
-export default function Tekstskriver(){
-    const [inputValue, setInputValue] = useState("");
+export default function Tekstskriver() {
+  const [inputValue, setInputValue] = useState("");
+  const [inputValues, setInputValues] = useState([]); 
 
-    const handeInputchange = (event) => {
-        setInputValue(event.target.value);
-        console.log(inputValue);
-    };
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
 
-    return(
-        <input type="text" value={inputValue} onChange={handeInputchange}/>
-    );
+  const handleClick = () => {
+    setInputValues([...inputValues, inputValue]);
+    setInputValue(""); 
+  };
+
+  return (
+    <>
+      <input type="text" value={inputValue} onChange={handleInputChange} />
+      <button onClick={handleClick}>Show input</button>
+      {
+        inputValues.map((value, index)=> (
+            <div style={textStyle} key={index}>
+                <h2> Hello, {value}</h2>
+            </div>
+        ))
+      }
+    </>
+  );
+}
+const textStyle= {
+    width: "fill",
+    height: "fill",
+    background: "red",
 }
