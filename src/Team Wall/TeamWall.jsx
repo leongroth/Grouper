@@ -3,6 +3,8 @@ import React, { useState } from "react";
 export default function Tekstskriver() {
   const [inputValue, setInputValue] = useState("");
   const [inputValues, setInputValues] = useState([]); 
+  const [isTextStyle, setIsTextStyle] = useState=(true);
+
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -11,6 +13,7 @@ export default function Tekstskriver() {
   const handleClick = () => {
     setInputValues([...inputValues, inputValue]);
     setInputValue(""); 
+    setIsTextStyle(textStyle => textStyle2);
   };
 
   return (
@@ -18,23 +21,18 @@ export default function Tekstskriver() {
       <input type="text" value={inputValue} onChange={handleInputChange} />
       <button onClick={handleClick}>Show input</button>
       
-        if (index %2 != 0){
+        {
         inputValues.map((value, index)=> (
             <div style={textStyle} key={index}>
                 <h2> Hello, {value}</h2>
             </div>
         ))
       }
-        else(){
-          inputValues.map((value, index)=> (
-            <div style={textStyle} key={index}>
-                <h2> Hello, {value}</h2>
-            </div>
-          ))
-        }
+
     </>
   );
 }
+
 const textStyle= {
     width: "fill",
     height: "fill",
@@ -42,6 +40,7 @@ const textStyle= {
     margin: "5em",
     marginRight: "25em",
 }
+
 const textStyle2={
   width: "fill",
     height: "fill",
