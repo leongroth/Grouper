@@ -1,10 +1,9 @@
-import { Auth } from "../../Components/auth";
+import { Log } from "../../Components/logincomponent"
 
 
 function Login(){
     return <div>
-        <Auth/>
+        <Log/>
         </div>
 }
-
 export default Login;

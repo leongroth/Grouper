@@ -1,16 +1,15 @@
 import { useState } from "react";
 import { auth } from "../config/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {  signInWithEmailAndPassword } from "firebase/auth";
 
-export const Auth = () => {
+export const Log = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-
-
-    const register = async() =>{
+    
+    const signIn = async() =>{
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
-            alert(email + "  has succesfully signed up")
+            await signInWithEmailAndPassword(auth, email, password);  
+            alert(email + "  is signed in")
         }
         catch(err){
         console.error(err)
@@ -27,7 +26,7 @@ export const Auth = () => {
         <input placeholder="password"
         type="password"
         onChange={(e) => setPassword(e.target.value)}/>
-        <button onClick={register}>Register </button>
+        <button onClick={signIn}>Sign in </button>
     </div>
 );
 };
