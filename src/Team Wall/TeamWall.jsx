@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../config/firebase";
 
@@ -27,6 +27,7 @@ export default function Tekstskriver() {
 
   useEffect(() => {
     getDescriptionList();
+
   }, []);
 
   const handleInputChange = (event) => {
@@ -52,6 +53,11 @@ export default function Tekstskriver() {
     getDescriptionList();
 
   };
+  const deleteDescription = async(id) => {
+    const descriptionDoc = doc(db, "Teamwall", id )
+    await deleteDoc(descriptionDoc);
+    getDescriptionList();
+  }
 
   return (
     <>
@@ -60,19 +66,15 @@ export default function Tekstskriver() {
      <input type="date" value={timeValue} onChange={handleDateChange} />
       <button onClick={handleClick}>Show input</button>
       
-        {
-        inputValues.map((value, index)=> (
-            <div style={styles[(index+2)%2]} key={index+1}>
-                <h2> {value}</h2>
-            </div>
-        ))
-      }
+
 
       <div>
         {descriptionList.map((Teamwall,index) => (
-          <div style={styles[(index+2)%2]} key={Teamwall.TimeStamp}>
+          <div style={styles[(index+2)%2]} key={Teamwall.id}>
             <h1>{Teamwall.Username}</h1>
             <p>{Teamwall.Description}</p>
+            <p>{Teamwall.TimeStamp}</p>
+            <button onClick={() => deleteDescription(Teamwall.id)}>Clear Note</button>
             </div>
         ))}
       </div>
