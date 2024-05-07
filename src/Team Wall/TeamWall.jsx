@@ -4,42 +4,60 @@ import { db } from "../config/firebase";
 
 export default function Tekstskriver() {
   const [inputValue, setInputValue] = useState("");
+  const [nameValue, setNameValue] = useState("");
+  const [timeValue, setTimeValue] = useState();
   const [inputValues, setInputValues] = useState([]); 
   const styles= [textStyle, textStyle2];
   const [descriptionList, setDescriptionList] = useState([]);
 
   const descriptionCollectionRef = collection(db, "Teamwall")
 
-  useEffect(() => {
-    const getDescriptionList = async () => {
-      try{
-      const data = await getDocs(descriptionCollectionRef);
-      const filteredData = data.docs.map((doc) => ({
-        ...doc.data(), 
-        id:doc.id}))
+  const getDescriptionList = async () => {
+    try{
+    const data = await getDocs(descriptionCollectionRef);
+    const filteredData = data.docs.map((doc) => ({
+      ...doc.data(), 
+      id:doc.id}))
 
-      setDescriptionList(filteredData)
-      }catch(err){
-        console.error(err);
-      }
-    };
+    setDescriptionList(filteredData)
+    }catch(err){
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
     getDescriptionList();
   }, []);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
+    getDescriptionList();
   };
 
-  const handleClick = async () => {
-    await addDoc(descriptionCollectionRef, {Description: inputValue, Username: "Frost" } )
+  const handleNameChange = (event) => {
+    setNameValue(event.target.value);
+    getDescriptionList();
+  };
+  
+  const handleDateChange = (event) => {
+  setTimeValue(event.target.value);
+  getDescriptionList();
+  }
 
-    /*     setInputValues([...inputValues, inputValue]);
-    setInputValue("");  */
+  const handleClick = async () => {
+    await addDoc(descriptionCollectionRef, {Description: inputValue, Username: nameValue, TimeStamp: timeValue } );
+    setInputValue("");
+    setNameValue("");
+    setTimeValue(0);
+    getDescriptionList();
+
   };
 
   return (
     <>
-     <input type="text" value={inputValue} onChange={handleInputChange} />
+     <input type="text" value={inputValue} placeholder="Write description here" onChange={handleInputChange} />
+     <input type="text" value={nameValue} placeholder="Write name here" onChange={handleNameChange} />
+     <input type="date" value={timeValue} onChange={handleDateChange} />
       <button onClick={handleClick}>Show input</button>
       
         {
