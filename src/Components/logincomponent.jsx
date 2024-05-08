@@ -16,7 +16,7 @@ export const Log = () => {
         }
     };
 
-
+//asdfasdfasdf
     return(
      <div>
         <input 
