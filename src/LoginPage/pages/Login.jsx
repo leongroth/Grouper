@@ -1,15 +1,18 @@
 import { useState } from "react";
 import {  signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/firebase";
+import { useNavigate } from "react-router";
 
 export default function Login ()  {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const navigate= useNavigate();
     
     const signIn = async() =>{
         try {
             await signInWithEmailAndPassword(auth, email, password);  
             alert(email + "  is signed in")
+            navigate("/teamwall")
         }
         catch(err){
         console.error(err)

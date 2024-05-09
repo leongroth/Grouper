@@ -1,12 +1,11 @@
 import { addDoc, collection, deleteDoc, doc, getDocs } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { db } from "../config/firebase";
 
 export default function Tekstskriver() {
   const [inputValue, setInputValue] = useState("");
   const [nameValue, setNameValue] = useState("");
   const [timeValue, setTimeValue] = useState();
-  const [inputValues, setInputValues] = useState([]); 
   const styles= [textStyle, textStyle2];
   const [descriptionList, setDescriptionList] = useState([]);
 
@@ -28,7 +27,7 @@ export default function Tekstskriver() {
   useEffect(() => {
     getDescriptionList();
 
-  }, []);
+  }, );
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
