@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, serverTimestamp } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../config/firebase";
 
@@ -17,7 +17,7 @@ export default function Tekstskriver() {
     const data = await getDocs(descriptionCollectionRef);
     const filteredData = data.docs.map((doc) => ({
       ...doc.data(), 
-      id:doc.id}))
+      id:doc.id}));
 
     setDescriptionList(filteredData)
     }catch(err){
