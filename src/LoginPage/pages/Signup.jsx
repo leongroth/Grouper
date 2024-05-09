@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { auth } from "../../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+
 
 export default function Signup ()  {
     const [email, setEmail] = useState("")
@@ -15,6 +18,7 @@ export default function Signup ()  {
         console.error(err)
         }
     };
+    
 
     return(
      <div>
@@ -27,6 +31,13 @@ export default function Signup ()  {
         type="password"
         onChange={(e) => setPassword(e.target.value)}/>
         <button onClick={register}>Register </button>
+
+        <button>
+            <a href={'/login'}>login</a>
+        </button>
+        <button>
+            <a href={'/signup'}>register</a>
+        </button>
     </div>
 );
 }
