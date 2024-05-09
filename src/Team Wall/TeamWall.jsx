@@ -1,6 +1,7 @@
-import { addDoc, collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, serverTimestamp } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../config/firebase";
+
 
 export default function Tekstskriver() {
   const [inputValue, setInputValue] = useState("");
@@ -62,7 +63,7 @@ export default function Tekstskriver() {
     <>
      <input type="text" value={inputValue} placeholder="Write description here" onChange={handleInputChange} />
      <input type="text" value={nameValue} placeholder="Write name here" onChange={handleNameChange} />
-     <input type="date" value={timeValue} onChange={handleDateChange} />
+     <input type="date"  value={timeValue} onChange={handleDateChange} />
       <button onClick={handleClick}>Show input</button>
       
 
