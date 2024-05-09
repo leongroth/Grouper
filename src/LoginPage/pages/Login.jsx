@@ -27,6 +27,13 @@ export default function Login ()  {
         type="password"
         onChange={(e) => setPassword(e.target.value)}/>
         <button onClick={signIn}>Sign in </button>
+        <button>
+            <a href={'/login'}>login</a>
+        </button>
+        <button>
+            <a href={'/signup'}>register</a>
+        </button>
+
     </div>
 );
 }
