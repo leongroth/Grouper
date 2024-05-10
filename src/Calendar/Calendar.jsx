@@ -1,8 +1,14 @@
 import { useState } from "react"
 import {db} from '../config/firebase'
 import { collection, getDocs } from "firebase/firestore"
+import { CalPopup } from "./CalendarPopup"
 
 export function Calendar() {
+
+    //Popup states and stuff
+    const [popupState, setPopupState] = useState(false)
+    const [popupDate, setPopupDate] = useState("")
+    //----------------------
     
     // CALENDAR DATES
     const date = new Date()
@@ -73,6 +79,8 @@ export function Calendar() {
             day = id - (daysInMonth(selectedYear, selectedMonth + 1) + firstDay - 1)
             date = `${day}/${selectedMonth + 2}/${selectedYear}`
         }
+
+        setPopupDate(date)
 
         contentList.map((item) => {
             if (item.date == date){
