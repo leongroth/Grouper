@@ -1,11 +1,33 @@
 import './App.css'
 import { Outlet } from 'react-router'
+import { auth } from './config/firebase'
+import { useEffect, useState } from 'react'
+
 
 
 function App() {
+
+
+
+  const [style, setStyle] = useState(testStyle1)
+
+  useEffect(() => {
+    const isLogged = auth.onAuthStateChanged(user => {
+      if (user) {
+        setStyle(testStyle);
+      } else {
+        setStyle(testStyle1);
+      }
+    });
+
+    return () => isLogged(); 
+  }, [])
+
+
   return (
     <>
       <div>
+        <div style={style}></div>
       <table>
         <th style={navbarStyle}>
           <tr>
@@ -44,6 +66,20 @@ function App() {
 const navbarStyle = {
   width: "200px",
   background: "#C7C7C7"
+}
+const testStyle = {
+  width:"20px",
+  height:"20px",
+  borderRadius:"20px",
+  background:"green"
+
+}
+const testStyle1 = {
+  width:"20px",
+  height:"20px",
+  borderRadius:"20px",
+  background:"black"
+
 }
 
 export default App
