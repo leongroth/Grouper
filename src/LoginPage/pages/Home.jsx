@@ -7,6 +7,9 @@ export default function Home(){
         <button>
             <a href={'/signup'}>register</a>
         </button>
+        <button>
+            <a href="/Calendar">Calendar</a>
+        </button>
         </div>
     )
 }
