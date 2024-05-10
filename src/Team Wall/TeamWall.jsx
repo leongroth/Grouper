@@ -37,7 +37,7 @@ export default function Tekstskriver() {
   };
   useEffect(() => {
     getDescriptionList();
-  }, );
+  },[] );
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
