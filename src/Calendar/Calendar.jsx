@@ -1,4 +1,6 @@
 import { useState } from "react"
+import {db} from '../config/firebase'
+import { collection, getDocs } from "firebase/firestore"
 
 export function Calendar() {
     
@@ -22,6 +24,24 @@ export function Calendar() {
         }
     //---------------
 
+    // Collect DB data
+    const [contentList, setContentList] = useState([])
+
+    const contentCollectionRef = collection(db, "Calendar")
+
+    const getContent = async () => {
+        try {
+            const data = await getDocs(contentCollectionRef)
+            const filteredData = data.docs.map((doc) => ({...doc.data()}))
+            setContentList(filteredData)
+        } catch (err) {
+            console.error(err)
+        }
+    }
+    getContent()
+    //----------------
+
+
     // Change selected month
     const lastMonth = () => {
         setSelectedMonth(selectedMonth - 1)
@@ -36,6 +56,7 @@ export function Calendar() {
     const renderMonth = (id) => {
         var day = 0
         var style = inactiveDayStyle
+        var dotStyle = inactivityStyle 
         const data = []
         var date = `${day}/${selectedMonth + 1}/${selectedYear}`
         
@@ -49,14 +70,24 @@ export function Calendar() {
             date = `${day}/${selectedMonth + 1}/${selectedYear}`
         }
         if (id > (firstDay + daysInMonth(selectedYear, selectedMonth + 1) - 1)) {
-            day = id - (daysInMonth(selectedYear, selectedMonth + 1) + firstDay)
+            day = id - (daysInMonth(selectedYear, selectedMonth + 1) + firstDay - 1)
             date = `${day}/${selectedMonth + 2}/${selectedYear}`
+        }
+
+        contentList.map((item) => {
+            if (item.date == date){
+                data.push(item.content)
+            }
+        })
+
+        if (data.length != 0){
+            dotStyle = activityStyle
         }
 
         return (
             <div style={style}>
                 <div style={textStyle}>{day}</div>
-                <div>{date}</div>
+                <div style={dotStyle}></div>
             </div>
         )
     }
@@ -126,6 +157,12 @@ export function Calendar() {
                     <th>{renderMonth(42)}</th>
                 </tr>
             </table>
+            <br></br>
+            <div>
+                {contentList.map((item) => {
+                    return <div>{item.content}</div>
+                })}
+            </div>
         </div>
     )
 }
@@ -151,4 +188,17 @@ const textStyle = {
 
 const monthtextStyle = {
     fontSize: 80
+}
+
+const activityStyle = {
+    width: "20px",
+    height: "20px",
+    borderRadius: "20px",
+    background: "blue"
+}
+
+const inactivityStyle = {
+    width: "20px",
+    height: "20px",
+    borderRadius: "20px",
 }
