@@ -1,5 +1,5 @@
 import { addDoc, collection, deleteDoc, doc, getDocs } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { auth, db } from "../config/firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router";
@@ -26,6 +26,7 @@ export default function Tekstskriver() {
       console.error(err);
     }
   };
+  getDescriptionList();
 
   const logout = async () => {
     try {
@@ -35,26 +36,24 @@ export default function Tekstskriver() {
       console.error(err);
     }
   };
-  useEffect(() => {
-    getDescriptionList();
-  },[] );
+
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
-    getDescriptionList();
+
   };
 
   const handleNameChange = (event) => {
     setNameValue(event.target.value);
-    getDescriptionList();
+
   };
   
   const handleDateChange = (event) => {
   setTimeValue(event.target.value);
-  getDescriptionList();
+
   }
 
-  const handleClick = async () => {
+  const addData = async () => {
     await addDoc(descriptionCollectionRef, {Description: inputValue, Username: nameValue, TimeStamp: timeValue, userId:auth.currentUser.uid, } );
     setInputValue("");
     setNameValue("");
@@ -73,7 +72,7 @@ export default function Tekstskriver() {
      <input type="text" value={inputValue} placeholder="Write description here" onChange={handleInputChange} />
      <input type="text" value={nameValue} placeholder="Write name here" onChange={handleNameChange} />
      <input type="date"  value={timeValue} onChange={handleDateChange} />
-      <button onClick={handleClick}>Show input</button>
+      <button onClick={addData}>Show input</button>
       
 
 
