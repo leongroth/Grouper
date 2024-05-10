@@ -10,6 +10,9 @@ export default function Home(){
         <button>
             <a href="/Calendar">Calendar</a>
         </button>
+        <button>
+            <a href="/Teamwall">Teamwall</a>
+        </button>
         </div>
     )
 }

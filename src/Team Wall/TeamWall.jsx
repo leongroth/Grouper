@@ -1,6 +1,8 @@
 import { addDoc, collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { db } from "../config/firebase";
+import { auth, db } from "../config/firebase";
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router";
 
 
 export default function Tekstskriver() {
@@ -11,7 +13,7 @@ export default function Tekstskriver() {
   const [descriptionList, setDescriptionList] = useState([]);
 
   const descriptionCollectionRef = collection(db, "Teamwall")
-
+  const navigate = useNavigate();
   const getDescriptionList = async () => {
     try{
     const data = await getDocs(descriptionCollectionRef);
@@ -25,9 +27,16 @@ export default function Tekstskriver() {
     }
   };
 
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/home")
+    } catch (err) {
+      console.error(err);
+    }
+  };
   useEffect(() => {
     getDescriptionList();
-
   }, );
 
   const handleInputChange = (event) => {
@@ -46,7 +55,7 @@ export default function Tekstskriver() {
   }
 
   const handleClick = async () => {
-    await addDoc(descriptionCollectionRef, {Description: inputValue, Username: nameValue, TimeStamp: timeValue } );
+    await addDoc(descriptionCollectionRef, {Description: inputValue, Username: nameValue, TimeStamp: timeValue, userId:auth.currentUser.uid, } );
     setInputValue("");
     setNameValue("");
     setTimeValue(0);
@@ -69,6 +78,7 @@ export default function Tekstskriver() {
 
 
       <div>
+      <button onClick={logout}>Sign out</button>
         {descriptionList.map((Teamwall,index) => (
           <div style={styles[(index+2)%2]} key={Teamwall.id}>
             <h1>{Teamwall.Username}</h1>
