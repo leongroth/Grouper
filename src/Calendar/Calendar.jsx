@@ -80,7 +80,6 @@ export function Calendar() {
             date = `${day}/${selectedMonth + 2}/${selectedYear}`
         }
 
-        setPopupDate(date)
 
         contentList.map((item) => {
             if (item.date == date){
@@ -91,9 +90,10 @@ export function Calendar() {
         if (data.length != 0){
             dotStyle = activityStyle
         }
+        
 
         return (
-            <div style={style}>
+            <div style={style} onClick={() => {setPopupDate(date), setPopupState(true)}}>
                 <div style={textStyle}>{day}</div>
                 <div style={dotStyle}></div>
             </div>
@@ -166,11 +166,15 @@ export function Calendar() {
                 </tr>
             </table>
             <br></br>
-            <div>
+            
+            <CalPopup trigger={popupState} setTrigger={setPopupState}>
+                <h2>{popupDate}</h2>
                 {contentList.map((item) => {
-                    return <div>{item.content}</div>
+                    if (item.date == popupDate) {
+                        return <p>{item.content}</p>
+                    }
                 })}
-            </div>
+            </CalPopup>
         </div>
     )
 }
