@@ -9,7 +9,7 @@ export default function Tekstskriver() {
   const [inputValue, setInputValue] = useState("");
   const [nameValue, setNameValue] = useState("");
   const [timeValue, setTimeValue] = useState();
-  const styles= [textStyle, textStyle2];
+  const styles= [textStyle1, textStyle2];
   const [descriptionList, setDescriptionList] = useState([]);
 
   const descriptionCollectionRef = collection(db, "Teamwall")
@@ -59,8 +59,9 @@ export default function Tekstskriver() {
     setNameValue("");
     setTimeValue(0);
     getDescriptionList();
-
+    alert("Note added")
   };
+  
   const deleteDescription = async(id) => {
     const descriptionDoc = doc(db, "Teamwall", id )
     await deleteDoc(descriptionDoc);
@@ -94,18 +95,20 @@ export default function Tekstskriver() {
   ); 
 }
 
-const textStyle= {
-    width: "fill",
+ const textStyle1=  {
+    width: "250px",
     height: "fill",
-    background: "red",
+    background: "#ff8b94",
     margin: "5em",
-    marginRight: "25em",
+    marginRight: "25em", 
+    boxShadow: "5px 5px 12px 0.2px #535353",
 }
 
 const textStyle2={
-  width: "fill",
+  width: "250px",
     height: "fill",
-    background: "blue",
+    background: "#1b85b8",
     margin: "5em",
     marginLeft: "25em",
-}
+    boxShadow: "5px 5px 12px 0.2px #535353",
+} 

@@ -65,7 +65,9 @@ function App() {
 
 const navbarStyle = {
   width: "200px",
-  background: "#C7C7C7"
+  background: "#C7C7C7",
+  marginLeft:"1000px",
+
 }
 const testStyle = {
   width:"20px",

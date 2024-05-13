@@ -6,18 +6,17 @@ import {getAuth} from 'firebase/auth'
 const firebaseConfig = {
 
 
-    apiKey: "AIzaSyDgx-jxzxrD9B4NbJVYK8GUdHUQVEqxoxg",
-  
-    authDomain: "nytester-de30d.firebaseapp.com",
-  
-    projectId: "nytester-de30d",
-  
-    storageBucket: "nytester-de30d.appspot.com",
-  
-    messagingSenderId: "353756479601",
-  
-    appId: "1:353756479601:web:7a95da090d6f60a9d39bd0"
-  
+  apiKey: "AIzaSyBdx_hurbjgalcoZMNENB6H7mtKGc2bpHY",
+
+  authDomain: "login-auth-6e5a8.firebaseapp.com",
+
+  projectId: "login-auth-6e5a8",
+
+  storageBucket: "login-auth-6e5a8.appspot.com",
+
+  messagingSenderId: "522872966180",
+
+  appId: "1:522872966180:web:a17c74f9a05ee5bf7edcb1"
   };
   
 //test

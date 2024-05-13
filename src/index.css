@@ -66,3 +66,19 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+textStyleTeamwall1{
+  width: "fill";
+  height: "fill";
+  background-color: "red";
+  margin: "5em";
+  margin-right: "25em";
+}
+
+textStyleTeamwall2{
+  width: "fill";
+  height: "fill";
+  background: "blue";
+  margin: "5em";
+  margin-left: "25em";
+}
