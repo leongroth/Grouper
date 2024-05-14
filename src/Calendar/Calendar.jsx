@@ -1,6 +1,6 @@
 import { useState } from "react"
 import {db} from '../config/firebase'
-import { collection, getDocs } from "firebase/firestore"
+import { onValue, ref, set, push} from "firebase/database"
 import { CalPopup } from "./CalendarPopup"
 
 export function Calendar() {
@@ -30,23 +30,54 @@ export function Calendar() {
         }
     //---------------
 
-    // Collect DB data
-    const [contentList, setContentList] = useState([])
+    // DB dates collector
 
-    const contentCollectionRef = collection(db, "Calendar")
+    const [dates, setDates] = useState([])
 
-    const getContent = async () => {
-        try {
-            const data = await getDocs(contentCollectionRef)
-            const filteredData = data.docs.map((doc) => ({...doc.data()}))
-            setContentList(filteredData)
-        } catch (err) {
-            console.error(err)
-        }
+    const datesCollector = () => {
+        const reference = ref(db, "Calendar/")
+        onValue(reference, (snapshot) => {
+            snapshot.forEach((childsnapshot) => {
+                const date = childsnapshot.key 
+                const content = childsnapshot.val().content
+                if (dates.indexOf(date) == -1 ){
+                    setDates(prevDates => [...prevDates, date])
+                }
+            })
+        }, {onlyOnce: true})
     }
-    getContent()
+    datesCollector()
     //----------------
+    
+    // DB content collector
+    const [contentDisplay, setContentDisplay] = useState([])
 
+    const contentCollector = (date) => {
+        const reference = ref(db, "Calendar/" + date)
+        onValue(reference, (snapshot) => {
+            snapshot.forEach((childsnapshot) => {
+                const content = `${childsnapshot.val().time} : ${childsnapshot.val().content}`
+                if (contentDisplay.indexOf(content) == -1){
+                    setContentDisplay(prevDisplay => [...prevDisplay, content])
+                }
+            })
+        })
+    }
+    //---------------------
+
+    // DB Content Setter
+    const [time, setTime] = useState("")
+    const [content, setContent] = useState("")
+
+    const contentSetter = (date, time, content) => {
+        const reference = ref(db, "Calendar/" + date)
+        push(reference, {
+            time: time,
+            content: content
+        })
+        datesCollector()
+    }
+    //------------------
 
     // Change selected month
     const lastMonth = () => {
@@ -64,36 +95,29 @@ export function Calendar() {
         var style = inactiveDayStyle
         var dotStyle = inactivityStyle 
         const data = []
-        var date = `${day}/${selectedMonth + 1}/${selectedYear}`
+        var date = `${day}-${selectedMonth + 1}-${selectedYear}`
         
         if (id < firstDay) {
             day = daysInMonthBefore - (firstDay - (id + 1))
-            date = `${day}/${selectedMonth}/${selectedYear}`
+            date = `${day}-${selectedMonth}-${selectedYear}`
         }
         if (id >= firstDay && id <= (firstDay + daysInMonth(selectedYear, selectedMonth + 1) - 1)) {
             day = (id - firstDay) + 1
             style = activeDayStyle
-            date = `${day}/${selectedMonth + 1}/${selectedYear}`
+            date = `${day}-${selectedMonth + 1}-${selectedYear}`
         }
         if (id > (firstDay + daysInMonth(selectedYear, selectedMonth + 1) - 1)) {
             day = id - (daysInMonth(selectedYear, selectedMonth + 1) + firstDay - 1)
-            date = `${day}/${selectedMonth + 2}/${selectedYear}`
+            date = `${day}-${selectedMonth + 2}-${selectedYear}`
         }
 
-
-        contentList.map((item) => {
-            if (item.date == date){
-                data.push(item.content)
-            }
-        })
-
-        if (data.length != 0){
+        if (dates.includes(date)){
             dotStyle = activityStyle
         }
         
 
         return (
-            <div style={style} onClick={() => {setPopupDate(date), setPopupState(true)}}>
+            <div style={style} onClick={() => {setPopupDate(date), setPopupState(true), contentCollector(date)}}>
                 <div style={textStyle}>{day}</div>
                 <div style={dotStyle}></div>
             </div>
@@ -168,12 +192,20 @@ export function Calendar() {
             <br></br>
             
             <CalPopup trigger={popupState} setTrigger={setPopupState}>
+                <button style={closeStyle} onClick={() => {setPopupState(false), setContentDisplay([])}}>Close</button>
                 <h2>{popupDate}</h2>
-                {contentList.map((item) => {
-                    if (item.date == popupDate) {
-                        return <p>{item.content}</p>
-                    }
-                })}
+                <div>
+                    <input type="time" onChange={(e) => {setTime(e.target.value)}}/>
+                    <textarea placeholder="Type your activity here" onChange={(e) => {setContent(e.target.value)}}/>
+                    <button onClick={() => {setContentDisplay([]), 
+                        contentSetter(popupDate, time, content)
+                    }}>Submit plan</button>
+                </div>
+                <div>
+                    {contentDisplay.map((item) => {
+                        return <div>{item}</div>
+                    })}
+                </div>
             </CalPopup>
         </div>
     )
@@ -213,4 +245,9 @@ const inactivityStyle = {
     width: "20px",
     height: "20px",
     borderRadius: "20px",
+}
+
+
+const closeStyle = {
+    background: "red"
 }
