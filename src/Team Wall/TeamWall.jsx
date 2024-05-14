@@ -68,15 +68,20 @@ export default function Tekstskriver() {
     getDescriptionList();
   }
 
+  document.addEventListener('DOMContentLoaded', () => {
+    const textareaEle = document.getElementById('textarea');
+    textareaEle.addEventListener('input', () => {
+        textareaEle.style.height = 'auto';
+        textareaEle.style.height = `${textareaEle.scrollHeight}px`;
+    });
+});
   return (
     <>
-     <input type="text" value={inputValue} placeholder="Write description here" onChange={handleInputChange} />
+     <textarea id="textarea" type="text" value={inputValue}  placeholder="Write description" onChange={handleInputChange} />
      <input type="text" value={nameValue} placeholder="Write name here" onChange={handleNameChange} />
      <input type="date"  value={timeValue} onChange={handleDateChange} />
       <button onClick={addData}>Show input</button>
       
-
-
       <div>
       <button onClick={logout}>Sign out</button>
         {descriptionList.map((Teamwall,index) => (
