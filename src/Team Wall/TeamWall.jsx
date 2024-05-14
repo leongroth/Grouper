@@ -1,9 +1,10 @@
-import { addDoc, collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+
 import { useState } from "react";
 import { auth, db } from "../config/firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router";
-
+import { onValue, ref, set, push, remove} from "firebase/database"
+import "./TeamWall.css"
 
 export default function Tekstskriver() {
   const [inputValue, setInputValue] = useState("");
@@ -12,21 +13,31 @@ export default function Tekstskriver() {
   const styles= [textStyle1, textStyle2];
   const [descriptionList, setDescriptionList] = useState([]);
 
-  const descriptionCollectionRef = collection(db, "Teamwall")
-  const navigate = useNavigate();
-  const getDescriptionList = async () => {
-    try{
-    const data = await getDocs(descriptionCollectionRef);
-    const filteredData = data.docs.map((doc) => ({
-      ...doc.data(), 
-      id:doc.id}));
+  const descriptionRef = ref(db, "Teamwall");
 
-    setDescriptionList(filteredData)
-    }catch(err){
-      console.error(err);
-    }
+  const getDescriptionList = () => {
+    onValue(descriptionRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const descriptionArray = Object.keys(data).map((key) => ({
+          ...data[key],
+          id: key,
+        }));
+        setDescriptionList(descriptionArray);
+      } else {
+        setDescriptionList([]);
+      }
+    });
   };
-  getDescriptionList();
+
+
+  const navigate = useNavigate()
+  const now = new Date()
+  const month = now.getMonth()+1
+  const day = now.getDate()
+  const hours = now.getHours()
+  const minutes = now.getMinutes()
+  
 
   const logout = async () => {
     try {
@@ -43,30 +54,31 @@ export default function Tekstskriver() {
 
   };
 
-  const handleNameChange = (event) => {
-    setNameValue(event.target.value);
 
-  };
   
-  const handleDateChange = (event) => {
-  setTimeValue(event.target.value);
+  const handleDateChange = () => {
+  setTimeValue([day,"/", month,"  ", hours,":", minutes]);
 
   }
 
   const addData = async () => {
-    await addDoc(descriptionCollectionRef, {Description: inputValue, Username: nameValue, TimeStamp: timeValue, userId:auth.currentUser.uid, } );
+    const time = `${day}/${month}  ${hours} : ${minutes}`
+    await push(descriptionRef, {
+      Description: inputValue,
+      TimeStamp: time,
+      userId: auth.currentUser.uid,
+    });
     setInputValue("");
     setNameValue("");
-    setTimeValue(0);
-    getDescriptionList();
-    alert("Note added")
+    setTimeValue("");
+    alert("Note added");
+    getDescriptionList()
   };
-  
-  const deleteDescription = async(id) => {
-    const descriptionDoc = doc(db, "Teamwall", id )
-    await deleteDoc(descriptionDoc);
-    getDescriptionList();
-  }
+
+
+  const deleteDescription = async (id) => {
+    await remove(ref(db, `Teamwall/${id}`));
+  };
 
   document.addEventListener('DOMContentLoaded', () => {
     const textareaEle = document.getElementById('textarea');
@@ -75,21 +87,24 @@ export default function Tekstskriver() {
         textareaEle.style.height = `${textareaEle.scrollHeight}px`;
     });
 });
+
+
   return (
     <>
      <textarea id="textarea" type="text" value={inputValue}  placeholder="Write description" onChange={handleInputChange} />
-     <input type="text" value={nameValue} placeholder="Write name here" onChange={handleNameChange} />
-     <input type="date"  value={timeValue} onChange={handleDateChange} />
+ 
       <button onClick={addData}>Show input</button>
       
       <div>
       <button onClick={logout}>Sign out</button>
-        {descriptionList.map((Teamwall,index) => (
-          <div style={styles[(index+2)%2]} key={Teamwall.id}>
-            <h1>{Teamwall.Username}</h1>
-            <p>{Teamwall.Description}</p>
-            <p>{Teamwall.TimeStamp}</p>
-            <button onClick={() => deleteDescription(Teamwall.id)}>Clear Note</button>
+      {descriptionList.map((teamwall, index) => (
+          <div style={styles[(index+2)%2]} key={teamwall.id}>
+            <h1 className="h1">{auth.currentUser.email}</h1>
+            <p>{teamwall.Description}</p>
+            <p>{[teamwall.TimeStamp]}</p>
+            <button onClick={() => deleteDescription(teamwall.id)}>
+              Clear Note
+            </button>
             </div>
         ))}
       </div>
