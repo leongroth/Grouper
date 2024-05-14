@@ -8,15 +8,17 @@ import { useEffect, useState } from 'react'
 function App() {
 
 
-
+  const [logUser, setLogUser] = useState("")
   const [style, setStyle] = useState(testStyle1)
 
   useEffect(() => {
     const isLogged = auth.onAuthStateChanged(user => {
       if (user) {
         setStyle(testStyle);
+        setLogUser(auth.currentUser.email)
       } else {
         setStyle(testStyle1);
+        setLogUser("")
       }
     });
 
@@ -30,6 +32,9 @@ function App() {
         <div style={style}></div>
       <table>
         <th style={navbarStyle}>
+          <tr>
+            <a>{logUser}</a>
+          </tr>
           <tr>
             <button>
                 <a href={'/login'}>login</a>
