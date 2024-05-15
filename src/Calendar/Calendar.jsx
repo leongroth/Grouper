@@ -2,6 +2,7 @@ import { useState } from "react"
 import {db} from '../config/firebase'
 import { onValue, ref, set, push, remove} from "firebase/database"
 import { CalPopup } from "./CalendarPopup"
+import './Calendar.css'
 
 export function Calendar() {
 
@@ -110,7 +111,7 @@ export function Calendar() {
     // Render Calendar Days
     const renderMonth = (id) => {
         var day = 0
-        var style = inactiveDayStyle
+        var style = "inactiveDayStyle"
         var dotStyle = inactivityStyle 
         const data = []
         var date = `${day}-${selectedMonth + 1}-${selectedYear}`
@@ -121,7 +122,7 @@ export function Calendar() {
         }
         if (id >= firstDay && id <= (firstDay + daysInMonth(selectedYear, selectedMonth + 1) - 1)) {
             day = (id - firstDay) + 1
-            style = activeDayStyle
+            style = "activeDayStyle"
             date = `${day}-${selectedMonth + 1}-${selectedYear}`
         }
         if (id > (firstDay + daysInMonth(selectedYear, selectedMonth + 1) - 1)) {
@@ -135,8 +136,8 @@ export function Calendar() {
         
 
         return (
-            <div style={style} onClick={() => {setPopupDate(date), setPopupState(true), contentCollector(date)}}>
-                <div style={textStyle}>{day}</div>
+            <div className={style} onClick={() => {setPopupDate(date), setPopupState(true), contentCollector(date)}}>
+                <div className="calendarDay">{day}</div>
                 <div style={dotStyle}></div>
             </div>
         )
@@ -153,64 +154,64 @@ export function Calendar() {
             <br></br>
             <table>
                 <tr>
-                    <th>{renderMonth(1)}</th>
-                    <th>{renderMonth(2)}</th>
-                    <th>{renderMonth(3)}</th>
-                    <th>{renderMonth(4)}</th>
-                    <th>{renderMonth(5)}</th>
-                    <th>{renderMonth(6)}</th>
-                    <th>{renderMonth(7)}</th>
+                    <td className="tester">{renderMonth(1)}</td>
+                    <td className="tester">{renderMonth(2)}</td>
+                    <td className="tester">{renderMonth(3)}</td>
+                    <td className="tester">{renderMonth(4)}</td>
+                    <td className="tester">{renderMonth(5)}</td>
+                    <td className="tester">{renderMonth(6)}</td>
+                    <td className="tester">{renderMonth(7)}</td>
                 </tr>
                 <tr>
-                    <th>{renderMonth(8)}</th>
-                    <th>{renderMonth(9)}</th>
-                    <th>{renderMonth(10)}</th>
-                    <th>{renderMonth(11)}</th>
-                    <th>{renderMonth(12)}</th>
-                    <th>{renderMonth(13)}</th>
-                    <th>{renderMonth(14)}</th>
+                    <td className="tester">{renderMonth(8)}</td>
+                    <td className="tester">{renderMonth(9)}</td>
+                    <td className="tester">{renderMonth(10)}</td>
+                    <td className="tester">{renderMonth(11)}</td>
+                    <td className="tester">{renderMonth(12)}</td>
+                    <td className="tester">{renderMonth(13)}</td>
+                    <td className="tester">{renderMonth(14)}</td>
                 </tr>
                 <tr>
-                    <th>{renderMonth(15)}</th>
-                    <th>{renderMonth(16)}</th>
-                    <th>{renderMonth(17)}</th>
-                    <th>{renderMonth(18)}</th>
-                    <th>{renderMonth(19)}</th>
-                    <th>{renderMonth(20)}</th>
-                    <th>{renderMonth(21)}</th>
+                    <td className="tester">{renderMonth(15)}</td>
+                    <td className="tester">{renderMonth(16)}</td>
+                    <td className="tester">{renderMonth(17)}</td>
+                    <td className="tester">{renderMonth(18)}</td>
+                    <td className="tester">{renderMonth(19)}</td>
+                    <td className="tester">{renderMonth(20)}</td>
+                    <td className="tester">{renderMonth(21)}</td>
                 </tr>
                 <tr>
-                    <th>{renderMonth(22)}</th>
-                    <th>{renderMonth(23)}</th>
-                    <th>{renderMonth(24)}</th>
-                    <th>{renderMonth(25)}</th>
-                    <th>{renderMonth(26)}</th>
-                    <th>{renderMonth(27)}</th>
-                    <th>{renderMonth(28)}</th>
+                    <td className="tester">{renderMonth(22)}</td>
+                    <td className="tester">{renderMonth(23)}</td>
+                    <td className="tester">{renderMonth(24)}</td>
+                    <td className="tester">{renderMonth(25)}</td>
+                    <td className="tester">{renderMonth(26)}</td>
+                    <td className="tester">{renderMonth(27)}</td>
+                    <td className="tester">{renderMonth(28)}</td>
                 </tr>
                 <tr>
-                    <th>{renderMonth(29)}</th>
-                    <th>{renderMonth(30)}</th>
-                    <th>{renderMonth(31)}</th>
-                    <th>{renderMonth(32)}</th>
-                    <th>{renderMonth(33)}</th>
-                    <th>{renderMonth(34)}</th>
-                    <th>{renderMonth(35)}</th>
+                    <td className="tester">{renderMonth(29)}</td>
+                    <td className="tester">{renderMonth(30)}</td>
+                    <td className="tester">{renderMonth(31)}</td>
+                    <td className="tester">{renderMonth(32)}</td>
+                    <td className="tester">{renderMonth(33)}</td>
+                    <td className="tester">{renderMonth(34)}</td>
+                    <td className="tester">{renderMonth(35)}</td>
                 </tr>
                 <tr>
-                    <th>{renderMonth(36)}</th>
-                    <th>{renderMonth(37)}</th>
-                    <th>{renderMonth(38)}</th>
-                    <th>{renderMonth(39)}</th>
-                    <th>{renderMonth(40)}</th>
-                    <th>{renderMonth(41)}</th>
-                    <th>{renderMonth(42)}</th>
+                    <td className="tester">{renderMonth(36)}</td>
+                    <td className="tester">{renderMonth(37)}</td>
+                    <td className="tester">{renderMonth(38)}</td>
+                    <td className="tester">{renderMonth(39)}</td>
+                    <td className="tester">{renderMonth(40)}</td>
+                    <td className="tester">{renderMonth(41)}</td>
+                    <td className="tester">{renderMonth(42)}</td>
                 </tr>
             </table>
             <br></br>
             
             <CalPopup trigger={popupState} setTrigger={setPopupState}>
-                <button style={closeStyle} onClick={() => {setPopupState(false), setContentDisplay([]), setKeys([]), setDates([]), datesCollector()}}>Close</button>
+                <button className="PopupCloseBTN" onClick={() => {setPopupState(false), setContentDisplay([]), setKeys([]), setDates([]), datesCollector()}}>Close</button>
                 <h2>{popupDate}</h2>
                 <div>
                     <input type="time" onChange={(e) => {setTime(e.target.value)}}/>
@@ -224,8 +225,8 @@ export function Calendar() {
                         return (
                             <div>
                                 <table>
-                                    <th><div>{item.time} {item.content}</div></th>
-                                    <th><button onClick={() => {contentDelete(item.key)}}>Delete</button></th>
+                                    <td><div>{item.time} {item.content}</div></td>
+                                    <td><button onClick={() => {contentDelete(item.key)}}>Delete</button></td>
                                 </table>
                             </div>
                         )
@@ -236,28 +237,6 @@ export function Calendar() {
     )
 }
 
-const inactiveDayStyle = {
-    width: "200px",
-    height: "100px",
-    background: "#e7e7e7",
-    borderRadius: "10px"
-}
-
-const activeDayStyle = {
-    width: "200px",
-    height: "100px",
-    background: "#c2efff",
-    borderRadius: "10px"
-}
-
-const textStyle = {
-    color: "black",
-    fontWeight: "bold"
-}
-
-const monthtextStyle = {
-    fontSize: 80
-}
 
 const activityStyle = {
     width: "20px",
@@ -270,9 +249,4 @@ const inactivityStyle = {
     width: "20px",
     height: "20px",
     borderRadius: "20px",
-}
-
-
-const closeStyle = {
-    background: "red"
 }
