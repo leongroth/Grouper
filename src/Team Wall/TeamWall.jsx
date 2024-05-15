@@ -10,27 +10,31 @@ import { TWPopup } from "./TeamWallPopup";
 export default function Tekstskriver() {
   const [inputValue, setInputValue] = useState("")
   const [timeValue, setTimeValue] = useState()
-  const styles= [textStyle1, textStyle2];
-  const [descriptionList, setDescriptionList] = useState([]);
+  const styles= [textStyle1, textStyle2]
+  const [descriptionList, setDescriptionList] = useState([])
   const [twPopupState, setTwPopupState] = useState(false)
+  const [keyList, setKeyList] = useState([])
   const user = auth?.currentUser?.email
 
   const descriptionRef = ref(db, "Teamwall");
 
   const getDescriptionList = () => {
     onValue(descriptionRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        const descriptionArray = Object.keys(data).map((key) => ({
-          ...data[key],
-          id: key,
-        }));
-        setDescriptionList(descriptionArray);
-      } else {
-        setDescriptionList([]);
+      snapshot.forEach((childsnapshot) => {
+      const description= childsnapshot.val().Description
+      const timeStamp= childsnapshot.val().TimeStamp
+      const userId=childsnapshot.val().userId
+      const userEmail=childsnapshot.val().userEmail
+      const key = childsnapshot.key
+
+      if (keyList.indexOf(key)==-1) {
+        setDescriptionList(prevdescriptionList => [...prevdescriptionList, {description:description, timeStamp:timeStamp, userId:userId, userEmail:userEmail, key:key}])
+        setKeyList(prevKeyList => [...prevKeyList, key])
       }
-    },{onlyOnce:true});
-  };
+    })
+  },{onlyOnce:true})
+}
+
 getDescriptionList()
 
   const navigate = useNavigate()
@@ -70,39 +74,39 @@ getDescriptionList()
     });
     setInputValue("")
     setTimeValue("")
-    getDescriptionList()
   };
 
 
   const deleteDescription = async (id) => {
     await remove(ref(db, `Teamwall/${id}`));
+    const newList=[]
+    descriptionList.map((item)=> {
+        if (item.key !=id) {
+            newList.push(item)
+        }
+    })
+    setDescriptionList(newList)
   };
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const textareaEle = document.getElementById('textarea');
-    textareaEle.addEventListener('input', () => {
-        textareaEle.style.height = 'auto';
-        textareaEle.style.height = `${textareaEle.scrollHeight}px`;
-    });
-});
+
 
 
   return (
     <>
     <button onClick={() => {setTwPopupState(true)}}>open popup</button>
     <TWPopup trigger={twPopupState}>
-     <textarea id="textarea" type="text" value={inputValue}  placeholder="Write description" onChange={handleInputChange} />
+     <textarea  type="text" value={inputValue}  placeholder="Write description" onChange={handleInputChange} />
      <button onClick={()=> {setTwPopupState(false)}}>luk</button>
       <button onClick={addData}>Show input</button>
       </TWPopup>
       <div>
       <button onClick={logout}>Sign out</button>
       {descriptionList.map((teamwall, index) => (
-          <div style={styles[(index+2)%2]} key={teamwall.id}>
+          <div style={styles[(index+2)%2]} key={teamwall.key}>
             <h1 className="h1">{[teamwall.userEmail]}</h1>
-            <p>{teamwall.Description}</p>
-            <p>{[teamwall.TimeStamp]}</p>
-            <button onClick={() => deleteDescription(teamwall.id)}>
+            <p>{teamwall.description}</p>
+            <p>{[teamwall.timeStamp]}</p>
+            <button onClick={() => deleteDescription(teamwall.key)}>
               Clear Note
             </button>
             </div>
