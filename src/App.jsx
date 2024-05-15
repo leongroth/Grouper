@@ -55,6 +55,11 @@ function App() {
                 <a href="/Teamwall">Teamwall</a>
             </button>
           </tr>
+          <tr>
+            <button>
+              <a href='/PBL'>PBL</a>
+            </button>
+          </tr>
         </th>
         <th>
           <Outlet/>

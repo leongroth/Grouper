@@ -12,7 +12,7 @@ export default function Tekstskriver() {
   const [timeValue, setTimeValue] = useState();
   const styles= [textStyle1, textStyle2];
   const [descriptionList, setDescriptionList] = useState([]);
-  const [twPopupState, setTwPopupState] = useState("false")
+  const [twPopupState, setTwPopupState] = useState(false)
 
   const descriptionRef = ref(db, "Teamwall");
 
@@ -117,7 +117,7 @@ getDescriptionList()
 }
 
  const textStyle1=  {
-    width: "250px",
+    width: "40%",
     height: "fill",
     background: "#ff8b94",
     margin: "5em",
@@ -126,7 +126,7 @@ getDescriptionList()
 }
 
 const textStyle2={
-  width: "250px",
+    width: "40%",
     height: "fill",
     background: "#1b85b8",
     margin: "5em",
