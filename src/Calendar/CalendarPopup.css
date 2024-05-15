@@ -38,7 +38,7 @@
     border-radius: 15px;
     position: absolute;
     right: 10px;
-    width: 50%;
+    width: 45%;
     height: fit-content;
 }
 
@@ -47,6 +47,13 @@
     height: 30px;
     text-align: center;
     border-radius: 10px;
+}
+
+.ContentTitleINP {
+    height: 28px;
+    width: 56%;
+    border-radius: 10px;
+    margin-left: 10px;
 }
 
 .DescriptionBox {
@@ -71,3 +78,66 @@
     margin-bottom: 20px;
 }
 
+.PopupContentDisplay {
+    width: 50%;
+    height: 61%;
+    position: absolute;
+    left: 10px;
+}
+
+.ContentDisplayItem {
+    width: 100%;
+}
+
+.PopupContentDisplayTime {
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px;
+    font-weight: bold;
+    width: 12%;
+    text-align: center;
+    position: relative;
+    top: 5px;
+    left: 5px;
+}
+
+.ContentDisplayTitle {
+    width: 100%;
+    position: relative;
+    left: 0px;
+    font-size: 20px;
+    font-weight: 600;
+    position: relative;
+    top: -30px;
+}
+
+td {
+    width: fit-content;
+}
+
+.ContentDisplayDeleteBTN {
+    background-color: red;
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: bolder;
+    color: white;
+    position: relative;
+    left: 45%;
+    top: -70px;
+}
+
+.ContentDisplayDescription {
+    text-align: left;
+    position: relative;
+    left: 5px;
+    top: -20px;
+}
+
+.ContentContainer {
+    background-color: pink;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    height: fit-content;
+}

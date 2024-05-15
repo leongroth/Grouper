@@ -61,7 +61,7 @@ export function Calendar() {
                 const key = childsnapshot.key
                 if (keys.indexOf(key) == - 1){
                     setKeys(preKeys => [...preKeys, key])
-                    setContentDisplay(prevDisplay => [...prevDisplay, {key: key, time: childsnapshot.val().time, content: childsnapshot.val().content}])
+                    setContentDisplay(prevDisplay => [...prevDisplay, {key: key, time: childsnapshot.val().time, title: childsnapshot.val().title, content: childsnapshot.val().content}])
                 }
             })
         }, {onlyOnce: true})
@@ -71,11 +71,13 @@ export function Calendar() {
     // DB Content Setter
     const [time, setTime] = useState("")
     const [content, setContent] = useState("")
+    const [title, setTitle] = useState("")
 
-    const contentSetter = (date, time, content) => {
+    const contentSetter = (date, time, content, title) => {
         const reference = ref(db, "Calendar/" + date)
         push(reference, {
             time: time,
+            title: title,
             content: content
         })
         datesCollector()
@@ -229,30 +231,34 @@ export function Calendar() {
             <CalPopup trigger={popupState} setTrigger={setPopupState}>
                 <button className="PopupCloseBTN" onClick={() => {setPopupState(false), setContentDisplay([]), setKeys([]), setDates([]), datesCollector()}}>Close</button>
                 <h2>{popupDate}</h2>
+
+                
                 <table className="PopupInputContainer">
                     <tr>
                         <div className="AddActivity">Add activity</div>
                     </tr>
                     <tr>
                         <input className="TimeInput" type="time" onChange={(e) => {setTime(e.target.value)}} />
+                        <input className="ContentTitleINP" placeholder="Event Title" type="text" onChange={(e) => {setTitle(e.target.value)}}/>
                     </tr>
                     <tr>
                         <textarea className="DescriptionBox" placeholder="Type your activity here" onChange={(e) => {setContent(e.target.value)}}/>
                     </tr>
                     <tr>
                         <button className="ContentSubmitBTN" onClick={() => { 
-                            contentSetter(popupDate, time, content)
+                            contentSetter(popupDate, time, content, title)
                         }}>Submit plan</button>
                     </tr>
                 </table>
-                <div>
+                <div className="PopupContentDisplay">
                     {contentDisplay.map((item) => {
                         return (
-                            <div>
-                                <table>
-                                    <td><div>{item.time} {item.content}</div></td>
-                                    <td><button onClick={() => {contentDelete(item.key)}}>Delete</button></td>
-                                </table>
+                            <div className="ContentContainer">
+                                
+                                <div className="PopupContentDisplayTime">{item.time}</div>
+                                <div className="ContentDisplayTitle" onClick={() => {content = item.content}}>{item.title}</div>
+                                <button className="ContentDisplayDeleteBTN" onClick={() => {contentDelete(item.key)}}>X</button>
+                                <div className="ContentDisplayDescription">{item.content}</div>
                             </div>
                         )
                     })}
