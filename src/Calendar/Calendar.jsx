@@ -146,14 +146,18 @@ export function Calendar() {
 
     return (
         <div className="calendarpage">
-            <table>
+            <h1>Calendar</h1>
+            <p>Manage your tasks and sessions</p>
+            <br/>
+            <br/>
+            <table className="tester">
                 <tr>
                     <td>
                         <button onClick={lastMonth}><div className="leftArrow"></div></button>
                     </td>
 
                     <td>
-                        <div>{months[selectedMonth]}</div>
+                        <div className="monthTitle">{months[selectedMonth]}</div>
                     </td>
 
                     <td>
@@ -166,58 +170,58 @@ export function Calendar() {
             <br></br>
             <table className="Calendar">
                 <tr>
-                    <td className="tester">{renderMonth(1)}</td>
-                    <td className="tester">{renderMonth(2)}</td>
-                    <td className="tester">{renderMonth(3)}</td>
-                    <td className="tester">{renderMonth(4)}</td>
-                    <td className="tester">{renderMonth(5)}</td>
-                    <td className="tester">{renderMonth(6)}</td>
-                    <td className="tester">{renderMonth(7)}</td>
+                    <td className="monthDayCards">{renderMonth(1)}</td>
+                    <td className="monthDayCards">{renderMonth(2)}</td>
+                    <td className="monthDayCards">{renderMonth(3)}</td>
+                    <td className="monthDayCards">{renderMonth(4)}</td>
+                    <td className="monthDayCards">{renderMonth(5)}</td>
+                    <td className="monthDayCards">{renderMonth(6)}</td>
+                    <td className="monthDayCards">{renderMonth(7)}</td>
                 </tr>
                 <tr>
-                    <td className="tester">{renderMonth(8)}</td>
-                    <td className="tester">{renderMonth(9)}</td>
-                    <td className="tester">{renderMonth(10)}</td>
-                    <td className="tester">{renderMonth(11)}</td>
-                    <td className="tester">{renderMonth(12)}</td>
-                    <td className="tester">{renderMonth(13)}</td>
-                    <td className="tester">{renderMonth(14)}</td>
+                    <td className="monthDayCards">{renderMonth(8)}</td>
+                    <td className="monthDayCards">{renderMonth(9)}</td>
+                    <td className="monthDayCards">{renderMonth(10)}</td>
+                    <td className="monthDayCards">{renderMonth(11)}</td>
+                    <td className="monthDayCards">{renderMonth(12)}</td>
+                    <td className="monthDayCards">{renderMonth(13)}</td>
+                    <td className="monthDayCards">{renderMonth(14)}</td>
                 </tr>
                 <tr>
-                    <td className="tester">{renderMonth(15)}</td>
-                    <td className="tester">{renderMonth(16)}</td>
-                    <td className="tester">{renderMonth(17)}</td>
-                    <td className="tester">{renderMonth(18)}</td>
-                    <td className="tester">{renderMonth(19)}</td>
-                    <td className="tester">{renderMonth(20)}</td>
-                    <td className="tester">{renderMonth(21)}</td>
+                    <td className="monthDayCards">{renderMonth(15)}</td>
+                    <td className="monthDayCards">{renderMonth(16)}</td>
+                    <td className="monthDayCards">{renderMonth(17)}</td>
+                    <td className="monthDayCards">{renderMonth(18)}</td>
+                    <td className="monthDayCards">{renderMonth(19)}</td>
+                    <td className="monthDayCards">{renderMonth(20)}</td>
+                    <td className="monthDayCards">{renderMonth(21)}</td>
                 </tr>
                 <tr>
-                    <td className="tester">{renderMonth(22)}</td>
-                    <td className="tester">{renderMonth(23)}</td>
-                    <td className="tester">{renderMonth(24)}</td>
-                    <td className="tester">{renderMonth(25)}</td>
-                    <td className="tester">{renderMonth(26)}</td>
-                    <td className="tester">{renderMonth(27)}</td>
-                    <td className="tester">{renderMonth(28)}</td>
+                    <td className="monthDayCards">{renderMonth(22)}</td>
+                    <td className="monthDayCards">{renderMonth(23)}</td>
+                    <td className="monthDayCards">{renderMonth(24)}</td>
+                    <td className="monthDayCards">{renderMonth(25)}</td>
+                    <td className="monthDayCards">{renderMonth(26)}</td>
+                    <td className="monthDayCards">{renderMonth(27)}</td>
+                    <td className="monthDayCards">{renderMonth(28)}</td>
                 </tr>
                 <tr>
-                    <td className="tester">{renderMonth(29)}</td>
-                    <td className="tester">{renderMonth(30)}</td>
-                    <td className="tester">{renderMonth(31)}</td>
-                    <td className="tester">{renderMonth(32)}</td>
-                    <td className="tester">{renderMonth(33)}</td>
-                    <td className="tester">{renderMonth(34)}</td>
-                    <td className="tester">{renderMonth(35)}</td>
+                    <td className="monthDayCards">{renderMonth(29)}</td>
+                    <td className="monthDayCards">{renderMonth(30)}</td>
+                    <td className="monthDayCards">{renderMonth(31)}</td>
+                    <td className="monthDayCards">{renderMonth(32)}</td>
+                    <td className="monthDayCards">{renderMonth(33)}</td>
+                    <td className="monthDayCards">{renderMonth(34)}</td>
+                    <td className="monthDayCards">{renderMonth(35)}</td>
                 </tr>
                 <tr>
-                    <td className="tester">{renderMonth(36)}</td>
-                    <td className="tester">{renderMonth(37)}</td>
-                    <td className="tester">{renderMonth(38)}</td>
-                    <td className="tester">{renderMonth(39)}</td>
-                    <td className="tester">{renderMonth(40)}</td>
-                    <td className="tester">{renderMonth(41)}</td>
-                    <td className="tester">{renderMonth(42)}</td>
+                    <td className="monthDayCards">{renderMonth(36)}</td>
+                    <td className="monthDayCards">{renderMonth(37)}</td>
+                    <td className="monthDayCards">{renderMonth(38)}</td>
+                    <td className="monthDayCards">{renderMonth(39)}</td>
+                    <td className="monthDayCards">{renderMonth(40)}</td>
+                    <td className="monthDayCards">{renderMonth(41)}</td>
+                    <td className="monthDayCards">{renderMonth(42)}</td>
                 </tr>
             </table>
             <br></br>

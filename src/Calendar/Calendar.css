@@ -1,6 +1,6 @@
 .calendarpage {
     position: absolute;
-    top: 10%;
+    top: 2%;
     height: 100vh;
 }
 
@@ -30,7 +30,7 @@
     border-radius: 10px;
 }
 
-.tester {
+.monthDayCards {
     width: 100vW;
     height: 100%;
 }
@@ -54,4 +54,28 @@
     border-top: 10px solid transparent;
 	border-left: 20px solid black;
 	border-bottom: 10px solid transparent;
+}
+
+.tester {
+    position: relative;
+    left: 5%;
+}
+
+.monthTitle {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+h1, p {
+    text-align: left;
+    position: relative;
+    left: 5%;
+}
+
+p {
+    font-size: 14px;
+}
+
+h1 {
+    font-size: 40px;
 }
