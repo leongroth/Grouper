@@ -3,13 +3,12 @@ import { useState } from "react";
 import { auth, db } from "../config/firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router";
-import { onValue, ref, set, push, remove} from "firebase/database"
+import { onValue, ref, push, remove} from "firebase/database"
 import "./TeamWall.css"
 import { TWPopup } from "./TeamWallPopup";
 
 export default function Tekstskriver() {
   const [inputValue, setInputValue] = useState("")
-  const [timeValue, setTimeValue] = useState()
   const styles= [textStyle1, textStyle2]
   const [descriptionList, setDescriptionList] = useState([])
   const [twPopupState, setTwPopupState] = useState(false)
@@ -73,7 +72,6 @@ getDescriptionList()
       userEmail: user,
     });
     setInputValue("")
-    setTimeValue("")
   };
 
 
