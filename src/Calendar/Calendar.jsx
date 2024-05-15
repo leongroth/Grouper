@@ -146,10 +146,22 @@ export function Calendar() {
 
     return (
         <div className="calendarpage">
-            <button onClick={lastMonth}><div className="leftArrow"></div></button>
-            <button onClick={nextMonth}>Next Month</button>
-            <br></br>
-            <div>{months[selectedMonth]}</div>
+            <table>
+                <tr>
+                    <td>
+                        <button onClick={lastMonth}><div className="leftArrow"></div></button>
+                    </td>
+
+                    <td>
+                        <div>{months[selectedMonth]}</div>
+                    </td>
+
+                    <td>
+                        <button onClick={nextMonth}><div className="rightArrow"></div></button>
+                    </td>
+                </tr>
+            </table>
+            
             <br></br>
             <br></br>
             <table className="Calendar">
