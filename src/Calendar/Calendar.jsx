@@ -150,7 +150,7 @@ export function Calendar() {
             <p>Manage your tasks and sessions</p>
             <br/>
             <br/>
-            <table className="tester">
+            <table className="MonthSelector">
                 <tr>
                     <td>
                         <button onClick={lastMonth}><div className="leftArrow"></div></button>
