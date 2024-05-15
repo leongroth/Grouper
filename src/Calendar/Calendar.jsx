@@ -229,13 +229,19 @@ export function Calendar() {
             <CalPopup trigger={popupState} setTrigger={setPopupState}>
                 <button className="PopupCloseBTN" onClick={() => {setPopupState(false), setContentDisplay([]), setKeys([]), setDates([]), datesCollector()}}>Close</button>
                 <h2>{popupDate}</h2>
-                <div>
-                    <input type="time" onChange={(e) => {setTime(e.target.value)}}/>
-                    <textarea placeholder="Type your activity here" onChange={(e) => {setContent(e.target.value)}}/>
-                    <button onClick={() => { 
-                        contentSetter(popupDate, time, content)
-                    }}>Submit plan</button>
-                </div>
+                <table className="PopupInputContainer">
+                    <tr>
+                        <input className="TimeInput" type="time" onChange={(e) => {setTime(e.target.value)}}/>
+                    </tr>
+                    <tr>
+                        <textarea className="DescriptionBox" placeholder="Type your activity here" onChange={(e) => {setContent(e.target.value)}}/>
+                    </tr>
+                    <tr>
+                        <button onClick={() => { 
+                            contentSetter(popupDate, time, content)
+                        }}>Submit plan</button>
+                    </tr>
+                </table>
                 <div>
                     {contentDisplay.map((item) => {
                         return (
