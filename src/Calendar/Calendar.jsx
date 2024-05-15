@@ -1,6 +1,6 @@
 import { useState } from "react"
 import {db} from '../config/firebase'
-import { onValue, ref, set, push} from "firebase/database"
+import { onValue, ref, set, push, remove} from "firebase/database"
 import { CalPopup } from "./CalendarPopup"
 
 export function Calendar() {
@@ -50,18 +50,20 @@ export function Calendar() {
     //----------------
     
     // DB content collector
+    const [keys, setKeys] = useState([])
     const [contentDisplay, setContentDisplay] = useState([])
 
     const contentCollector = (date) => {
         const reference = ref(db, "Calendar/" + date)
         onValue(reference, (snapshot) => {
             snapshot.forEach((childsnapshot) => {
-                const content = `${childsnapshot.val().time} : ${childsnapshot.val().content}`
-                if (contentDisplay.indexOf(content) == -1){
-                    setContentDisplay(prevDisplay => [...prevDisplay, content])
+                const key = childsnapshot.key
+                if (keys.indexOf(key) == - 1){
+                    setKeys(preKeys => [...preKeys, key])
+                    setContentDisplay(prevDisplay => [...prevDisplay, {key: key, time: childsnapshot.val().time, content: childsnapshot.val().content}])
                 }
             })
-        })
+        }, {onlyOnce: true})
     }
     //---------------------
 
@@ -76,6 +78,22 @@ export function Calendar() {
             content: content
         })
         datesCollector()
+        contentCollector(popupDate)
+    }
+    //------------------
+
+    // DB Delete content
+    const contentDelete = (id) => {
+        const reference = ref(db, "Calendar/" + `${popupDate}/` + id)
+        remove(reference)
+        const newContents = []
+        contentDisplay.map((item) => {
+            if (item.key != id){
+                newContents.push(item)
+            }
+        },
+        setContentDisplay(newContents)
+    )
     }
     //------------------
 
@@ -192,18 +210,25 @@ export function Calendar() {
             <br></br>
             
             <CalPopup trigger={popupState} setTrigger={setPopupState}>
-                <button style={closeStyle} onClick={() => {setPopupState(false), setContentDisplay([])}}>Close</button>
+                <button style={closeStyle} onClick={() => {setPopupState(false), setContentDisplay([]), setKeys([]), setDates([]), datesCollector()}}>Close</button>
                 <h2>{popupDate}</h2>
                 <div>
                     <input type="time" onChange={(e) => {setTime(e.target.value)}}/>
                     <textarea placeholder="Type your activity here" onChange={(e) => {setContent(e.target.value)}}/>
-                    <button onClick={() => {setContentDisplay([]), 
+                    <button onClick={() => { 
                         contentSetter(popupDate, time, content)
                     }}>Submit plan</button>
                 </div>
                 <div>
                     {contentDisplay.map((item) => {
-                        return <div>{item}</div>
+                        return (
+                            <div>
+                                <table>
+                                    <th><div>{item.time} {item.content}</div></th>
+                                    <th><button onClick={() => {contentDelete(item.key)}}>Delete</button></th>
+                                </table>
+                            </div>
+                        )
                     })}
                 </div>
             </CalPopup>
