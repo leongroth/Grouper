@@ -8,11 +8,12 @@ import "./TeamWall.css"
 import { TWPopup } from "./TeamWallPopup";
 
 export default function Tekstskriver() {
-  const [inputValue, setInputValue] = useState("");
-  const [timeValue, setTimeValue] = useState();
+  const [inputValue, setInputValue] = useState("")
+  const [timeValue, setTimeValue] = useState()
   const styles= [textStyle1, textStyle2];
   const [descriptionList, setDescriptionList] = useState([]);
   const [twPopupState, setTwPopupState] = useState(false)
+  const user = auth?.currentUser?.email
 
   const descriptionRef = ref(db, "Teamwall");
 
@@ -43,7 +44,7 @@ getDescriptionList()
   const logout = async () => {
     try {
       await signOut(auth);
-      navigate("/home")
+      navigate("/login")
     } catch (err) {
       console.error(err);
     }
@@ -57,10 +58,7 @@ getDescriptionList()
 
 
   
-  const handleDateChange = () => {
-  setTimeValue([day, month, hours, minutes]);
 
-  }
 
   const addData = async () => {
     const time = `${day}/${month} ${hours}:${minutes}`
@@ -68,6 +66,7 @@ getDescriptionList()
       Description: inputValue,
       TimeStamp: time,
       userId: auth.currentUser.uid,
+      userEmail: user,
     });
     setInputValue("")
     setTimeValue("")
@@ -100,7 +99,7 @@ getDescriptionList()
       <button onClick={logout}>Sign out</button>
       {descriptionList.map((teamwall, index) => (
           <div style={styles[(index+2)%2]} key={teamwall.id}>
-            <h1 className="h1">{auth.currentUser.email}</h1>
+            <h1 className="h1">{[teamwall.userEmail]}</h1>
             <p>{teamwall.Description}</p>
             <p>{[teamwall.TimeStamp]}</p>
             <button onClick={() => deleteDescription(teamwall.id)}>
