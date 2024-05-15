@@ -5,6 +5,7 @@ import "./Points.css"
 export function PointsPage() {
     const [totalPoints, setTotalPoints] = useState(0)
     const [sessionsMonth, setSessionsMonth] = useState(0)
+    const [sessionsDay, setSessionsDay] = useState(0)
 
     return (
         <div>
@@ -16,6 +17,7 @@ export function PointsPage() {
                     {totalPoints}
                     </div>
                 </th>
+
                 <th>
                     <div className="M-Sesh">
                     Sessions this month
@@ -23,9 +25,15 @@ export function PointsPage() {
                     {sessionsMonth}
                     </div>
                 </th>
+
+                <th>
+                    <div className="D-Sesh">
+                    Sessions today
+                    <br></br>
+                    {sessionsDay}
+                    </div>
+                </th>
             </table>
-            
-            
         </div>
     )
 
