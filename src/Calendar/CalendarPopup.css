@@ -43,16 +43,20 @@
 }
 
 .TimeInput {
-    width: 50%;
+    width: 30%;
+    height: 30px;
     text-align: center;
+    border-radius: 10px;
 }
 
 .DescriptionBox {
     width: 90%;
     height: 200px;
     text-align: center;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 300;
+    border: solid 2px black;
+    border-radius: 15px;
 }
 
 .ContentSubmitBTN {
@@ -61,12 +65,9 @@
     font-weight: bolder;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+.AddActivity {
+    font-size: 20px;
+    font-weight: bolder;
+    margin-bottom: 20px;
 }
 
-.HourInput {
-    width: 10px;
-}

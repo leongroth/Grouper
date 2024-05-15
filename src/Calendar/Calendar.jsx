@@ -230,14 +230,11 @@ export function Calendar() {
                 <button className="PopupCloseBTN" onClick={() => {setPopupState(false), setContentDisplay([]), setKeys([]), setDates([]), datesCollector()}}>Close</button>
                 <h2>{popupDate}</h2>
                 <table className="PopupInputContainer">
-                    <tr>Add activity</tr>
                     <tr>
-                        <input className="TimeInput" type="time" onChange={(e) => {setTime(e.target.value)}} />
+                        <div className="AddActivity">Add activity</div>
                     </tr>
                     <tr>
-                        <td>
-                            <input type="number" min={0} max={24} className="HourInput" />
-                        </td>
+                        <input className="TimeInput" type="time" onChange={(e) => {setTime(e.target.value)}} />
                     </tr>
                     <tr>
                         <textarea className="DescriptionBox" placeholder="Type your activity here" onChange={(e) => {setContent(e.target.value)}}/>
