@@ -40,3 +40,60 @@
 .read-the-docs {
   color: #888;
 }
+
+
+body {
+  border: solid 2px red;
+}
+
+.NavbarContainer {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  height: 100vh;
+  width: 20%;
+  background-color: burlywood;
+}
+
+.test {
+  width: 100%;
+  height: fit-content;
+  border: solid 2px red;
+}
+
+.row {
+  position: relative;
+  left: 60%;
+  width: 100%;
+  background-color: blue;
+}
+
+.rowContainer {
+  width: 100%;
+  background-color: pink;
+}
+
+.loginRegisterTable {
+  width: 100%;
+  height: fit-content;
+  background-color: red;
+}
+
+.contenttest {
+  background-color: blue;
+  height: 10%;
+  width: fit-content;
+}
+
+.NavBarTable {
+  width: 100%;
+}
+
+.PageContainer {
+  position: absolute;
+  left: 20%;
+  top: 0%;
+  height: 100vh;
+  width: 80%;
+  background-color: pink;
+}

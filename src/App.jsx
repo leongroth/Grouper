@@ -28,51 +28,64 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className='NavbarContainer'>
         <div style={style}></div>
-      <table>
-        <th style={navbarStyle}>
-          <tr>
-            <a>{logUser}</a>
-          </tr>
-          <tr>
+      <table className='loginRegisterTable'>
+        <tr>
+          <td className='contenttest'>
             <button>
-                <a href={'/login'}>login</a>
+              <a href={'/login'}>login</a>
             </button>
-          </tr>
-          <tr>
+          </td>
+          <td className='contenttest'>
             <button>
                 <a href={'/signup'}>register</a>
             </button>
-          </tr>
-          <tr>
+          </td>
+        </tr>
+      </table>
+
+      <br/>
+      <br/>
+      <br/>
+
+      <table className='NavBarTable'> 
+        <tr>
+          <td className='contenttest'>
             <button>
-                <a href="/Calendar">Calendar</a>
+              <a href="/Calendar">Calendar</a>
             </button>
-          </tr>
-          <tr>
+          </td>
+        </tr>
+        
+        <tr>
+          <td className='contenttest'>
             <button>
-                <a href="/Teamwall">Teamwall</a>
+              <a href="/Teamwall">Teamwall</a>
             </button>
-          </tr>
-          <tr>
+          </td>
+        </tr>
+
+        <tr>
+          <td className='contenttest'>
             <button>
               <a href='/PBL'>PBL</a>
             </button>
-          </tr>
-          <tr>
+          </td>
+        </tr>
+
+        <tr>
+          <td className='contenttest'>
             <button>
               <a href='/Points'>Points</a>
             </button>
-          </tr>
-        </th>
-        <th>
-          <Outlet/>
-        </th>
+          </td>
+        </tr>
       </table>
-
         
-        
+      </div>
+      <div className="PageContainer">
+        <Outlet/>
       </div>
     </>
   )
