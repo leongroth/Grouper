@@ -5,13 +5,14 @@ import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router";
 import { onValue, ref, set, push, remove} from "firebase/database"
 import "./TeamWall.css"
+import { TWPopup } from "./TeamWallPopup";
 
 export default function Tekstskriver() {
   const [inputValue, setInputValue] = useState("");
-  const [nameValue, setNameValue] = useState("");
   const [timeValue, setTimeValue] = useState();
   const styles= [textStyle1, textStyle2];
   const [descriptionList, setDescriptionList] = useState([]);
+  const [twPopupState, setTwPopupState] = useState("false")
 
   const descriptionRef = ref(db, "Teamwall");
 
@@ -27,9 +28,9 @@ export default function Tekstskriver() {
       } else {
         setDescriptionList([]);
       }
-    });
+    },{onlyOnce:true});
   };
-
+getDescriptionList()
 
   const navigate = useNavigate()
   const now = new Date()
@@ -57,21 +58,19 @@ export default function Tekstskriver() {
 
   
   const handleDateChange = () => {
-  setTimeValue([day,"/", month,"  ", hours,":", minutes]);
+  setTimeValue([day, month, hours, minutes]);
 
   }
 
   const addData = async () => {
-    const time = `${day}/${month}  ${hours} : ${minutes}`
+    const time = `${day}/${month} ${hours}:${minutes}`
     await push(descriptionRef, {
       Description: inputValue,
       TimeStamp: time,
       userId: auth.currentUser.uid,
     });
-    setInputValue("");
-    setNameValue("");
-    setTimeValue("");
-    alert("Note added");
+    setInputValue("")
+    setTimeValue("")
     getDescriptionList()
   };
 
@@ -91,10 +90,12 @@ export default function Tekstskriver() {
 
   return (
     <>
+    <button onClick={() => {setTwPopupState(true)}}>open popup</button>
+    <TWPopup trigger={twPopupState}>
      <textarea id="textarea" type="text" value={inputValue}  placeholder="Write description" onChange={handleInputChange} />
- 
+     <button onClick={()=> {setTwPopupState(false)}}>luk</button>
       <button onClick={addData}>Show input</button>
-      
+      </TWPopup>
       <div>
       <button onClick={logout}>Sign out</button>
       {descriptionList.map((teamwall, index) => (
