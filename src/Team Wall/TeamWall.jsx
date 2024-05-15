@@ -36,7 +36,6 @@ export default function Tekstskriver() {
 
 getDescriptionList()
 
-  const navigate = useNavigate()
   const now = new Date()
   const month = now.getMonth()+1
   const day = now.getDate()
@@ -44,14 +43,7 @@ getDescriptionList()
   const minutes = now.getMinutes()
   
 
-  const logout = async () => {
-    try {
-      await signOut(auth);
-      navigate("/login")
-    } catch (err) {
-      console.error(err);
-    }
-  };
+
 
 
   const handleInputChange = (event) => {
@@ -98,7 +90,6 @@ getDescriptionList()
       <button onClick={addData}>Show input</button>
       </TWPopup>
       <div>
-      <button onClick={logout}>Sign out</button>
       {descriptionList.map((teamwall, index) => (
           <div style={styles[(index+2)%2]} key={teamwall.key}>
             <h1 className="h1">{[teamwall.userEmail]}</h1>
