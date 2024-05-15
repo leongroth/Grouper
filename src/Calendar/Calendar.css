@@ -34,3 +34,17 @@
     width: 100vW;
     height: 100%;
 }
+
+.Calendar {
+    position: relative;
+    left: 5%;
+    width: 90%;
+}
+
+.leftArrow {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+	border-right: 20px solid black;
+	border-bottom: 10px solid transparent;
+}

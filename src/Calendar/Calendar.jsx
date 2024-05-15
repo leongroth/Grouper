@@ -146,13 +146,13 @@ export function Calendar() {
 
     return (
         <div className="calendarpage">
-            <button onClick={lastMonth}>Last Month</button>
+            <button onClick={lastMonth}><div className="leftArrow"></div></button>
             <button onClick={nextMonth}>Next Month</button>
             <br></br>
             <div>{months[selectedMonth]}</div>
             <br></br>
             <br></br>
-            <table>
+            <table className="Calendar">
                 <tr>
                     <td className="tester">{renderMonth(1)}</td>
                     <td className="tester">{renderMonth(2)}</td>
