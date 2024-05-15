@@ -60,6 +60,11 @@ function App() {
               <a href='/PBL'>PBL</a>
             </button>
           </tr>
+          <tr>
+            <button>
+              <a href='/Points'>Points</a>
+            </button>
+          </tr>
         </th>
         <th>
           <Outlet/>
