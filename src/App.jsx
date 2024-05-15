@@ -1,12 +1,23 @@
 import './App.css'
-import { Outlet } from 'react-router'
+import { Outlet, useNavigate } from 'react-router'
 import { auth } from './config/firebase'
 import { useEffect, useState } from 'react'
+import { signOut } from 'firebase/auth'
 
 
 
 function App() {
 
+  const navigate = useNavigate()
+
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/login")
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const [logUser, setLogUser] = useState("")
   const [style, setStyle] = useState(testStyle1)
@@ -42,6 +53,7 @@ function App() {
                 <a href={'/signup'}>register</a>
             </button>
           </td>
+          <button onClick={logout}>Sign out</button>
         </tr>
       </table>
 
