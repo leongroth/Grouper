@@ -4,10 +4,9 @@ import './CalendarWeekView.css'
 export function CalendarWeek(props) {
     const date = new Date()
     const year = date.getFullYear()
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    const month = date.getMonth()
+    const month = date.getMonth() + 1
     const today = date.getDate()
-    const currentDate = `${today}-${month + 1}-${year}`
+    const currentDate = `${today}-${month}-${year}`
 
     const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
@@ -15,23 +14,49 @@ export function CalendarWeek(props) {
     const [selectedMonth, setSelectedMonth] = useState(month)
 
     const daysInMonth = (year, month) => new Date(year, month, 0).getDate()
-    const daysInMonthBefore = daysInMonth(selectedYear, selectedMonth)
 
     var firstDay = (new Date(year, selectedMonth, 1)).getDay()
         if (firstDay == 0) {
             firstDay = 7
         }
 
-    const weekday = (new Date(year, selectedMonth, today)).getDay()
+    const weekday = (new Date(year, month - 1, today)).getDay()
     const [firstDayOfWeekSelected, setFirstDayOfWeekSelected] = useState(today - weekday +1)
     const [daysInWeekSelected, setDaysInWeekSelected] = useState([])
 
     const lastWeek = () => {
-        setFirstDayOfWeekSelected(prevFirstDay => (prevFirstDay - 7))
+        if(firstDayOfWeekSelected - 7 < 0){
+            var newMonth = selectedMonth - 1
+
+            if(newMonth < 1){
+                newMonth = 12
+                setSelectedYear(selectedYear - 1)
+            }
+
+            setSelectedMonth(newMonth)
+            setFirstDayOfWeekSelected((daysInMonth(selectedYear, newMonth)) + (firstDayOfWeekSelected - 7))
+        }
+        else {
+            setFirstDayOfWeekSelected(firstDayOfWeekSelected - 7)
+        }
     }
 
     const nextWeek = () => {
-        setFirstDayOfWeekSelected(prevFirstDay => (prevFirstDay + 7))
+        
+        if(firstDayOfWeekSelected + 7 > daysInMonth(selectedYear, selectedMonth)){
+            var newMonth = selectedMonth + 1
+
+            if(newMonth > 12){
+                newMonth = 1
+                setSelectedYear(selectedYear + 1)
+            }
+
+            setSelectedMonth(newMonth)
+            setFirstDayOfWeekSelected((firstDayOfWeekSelected + 7) - (daysInMonth(year, newMonth -1)))
+        }
+        else {
+            setFirstDayOfWeekSelected(firstDayOfWeekSelected +7)
+        }
     }
 
     const renderDate = (id) => {
@@ -95,7 +120,9 @@ export function CalendarWeek(props) {
                 </tr>
                 
             </table>
-            <div style={testStyle}>{firstDayOfWeekSelected}</div>
+            
+            <div style={testStyle}> {firstDayOfWeekSelected} - {selectedMonth} - {selectedYear} </div>
+            <div style={testStyle}>{today}</div>
         </div>
     ) : ""
 }
