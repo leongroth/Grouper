@@ -93,7 +93,7 @@ body {
   position: absolute;
   left: 20%;
   top: 0%;
-  height: fill;
+  height: 100vh;
   width: 80%;
   background-color: pink;
 }
