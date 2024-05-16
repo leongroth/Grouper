@@ -1,14 +1,22 @@
 import { useState } from "react";
+import './CalendarContainerPage.css'
+import { Calendar } from "./Calendar";
 
 export function CalendarContainerPage() {
-
+    const [isMonthView, setIsMonthView] = useState(false)
 
 
     return (
         <div>
-            <div>
-                <h1>Test</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora ullam iusto inventore vel a in nulla quidem perspiciatis quo quos?</p>
+            <div className="TopContainer">
+                <h1>Calendar</h1>
+                <p>Manage your tasks and sessions</p>
+                <button onClick={() => {setIsMonthView(true)}}>View Calendar</button>
+                <button onClick={() => {setIsMonthView(false)}}>Close Calendar</button>
+            </div>
+
+            <div className="CalendarViewContainer">
+                <Calendar trigger={isMonthView}/>
             </div>
         </div>
     )

@@ -4,7 +4,7 @@ import { onValue, ref, set, push, remove} from "firebase/database"
 import { CalPopup } from "./CalendarPopup"
 import './Calendar.css'
 
-export function Calendar() {
+export function Calendar(props) {
 
     //Popup states and stuff
     const [popupState, setPopupState] = useState(false)
@@ -146,12 +146,9 @@ export function Calendar() {
     }
     //---------------------
 
-    return (
+    return (props.trigger) ? (
         <div className="calendarpage">
-            <h1>Calendar</h1>
-            <p>Manage your tasks and sessions</p>
-            <br/>
-            <br/>
+
             <table className="MonthSelector">
                 <tr>
                     <td>
@@ -265,7 +262,7 @@ export function Calendar() {
                 </div>
             </CalPopup>
         </div>
-    )
+    ) : ""
 }
 
 
