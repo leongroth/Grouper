@@ -72,13 +72,21 @@ getPBLlist()
             <button className="PBLButton" onClick={ ()=> {window.open('https://www.studerende.aau.dk/studieliv/studieteknik/inspiration-til-dit-gruppearbejde#') }}>Group Conflics</button>
             <button className="PBLButton" onClick={()=> {window.open('https://www.kommunikation.aau.dk/uddannelser/kdm/regler-og-retningslinjer/projektrapporten')}}>Report Structure</button> 
         </div>
+        <div className="inputFields">
         <div className="Headline">
             Group Contract
         </div>
-        <div>
-            <input type="text" placeholder="Write title of rule here" onChange={handleTitleChange} value={titleValue} />
-            <textarea type="text" placeholder="Write description of rule here" onChange={handleRuleChange} value={ruleValue}/>
-            <button onClick={AddRule}>Submit Rule</button>
+        <table className="tableClass">
+            <tr>
+            <input className="titleInp" type="text" placeholder="Write title of rule here" onChange={handleTitleChange} value={titleValue} />
+            </tr>
+            <tr>
+            <textarea className="ruleInp" type="text" placeholder="Write description of rule here" onChange={handleRuleChange} value={ruleValue}/>
+            </tr>
+            <tr>
+            <button className="submit" onClick={AddRule}>Submit Rule</button>
+            </tr>
+        </table>
         </div>
         <div className="paragraph">
             {PBLlist.map((PBL ) => {
