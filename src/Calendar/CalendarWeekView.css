@@ -1,0 +1,14 @@
+
+.CalendarWeekBox {
+    width: 90%;
+    position: relative;
+    left: 5%;
+}
+
+.DayBox {
+    background-color: #c2efff;
+    width: 10vW;
+    max-width: 100%;
+    height: 50vh;
+    border-radius: 10px;
+}

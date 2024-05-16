@@ -16,6 +16,8 @@ export function Calendar(props) {
     const year = date.getFullYear()
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     const month = date.getMonth()
+    const today = date.getDate()
+    const currentDate = `${today}-${month + 1}-${year}`
 
     const [selectedYear, setSelectedYear] = useState(year)
     const [selectedMonth, setSelectedMonth] = useState(month)
@@ -114,6 +116,7 @@ export function Calendar(props) {
     const renderMonth = (id) => {
         var day = 0
         var style = "inactiveDayStyle"
+        var todayStyle = notCurrentDayStyle
         var dotStyle = inactivityStyle 
         const data = []
         var date = `${day}-${selectedMonth + 1}-${selectedYear}`
@@ -136,9 +139,12 @@ export function Calendar(props) {
             dotStyle = activityStyle
         }
         
+        if(date == currentDate){
+            todayStyle = currentDayStyle
+        }
 
         return (
-            <div className={style} onClick={() => {setPopupDate(date), setPopupState(true), contentCollector(date)}}>
+            <div style={todayStyle} className={style} onClick={() => {setPopupDate(date), setPopupState(true), contentCollector(date)}}>
                 <div className="calendarDay">{day}</div>
                 <div style={dotStyle}></div>
             </div>
@@ -277,4 +283,12 @@ const inactivityStyle = {
     width: "20px",
     height: "20px",
     borderRadius: "20px",
+}
+
+const notCurrentDayStyle = {
+    
+}
+
+const currentDayStyle = {
+    background: "#38caff"
 }
