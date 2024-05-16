@@ -6,3 +6,45 @@
     border: 2px solid black;
     border-radius: 10px;
 }
+
+.PBLButtons{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.PBLButton{
+    position: relative;
+    background-color: #ECF4FF;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.Headline{
+    position: relative;
+    margin-top: 5%;
+    font-size: xx-large;
+    font-weight: bolder;
+    
+}
+.Title{
+    font-size: x-large;
+    position: relative;
+    left: 8%;
+}
+.Rule{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    position: relative;
+    left: 8%;
+}
+.deleteButton{
+    position: relative;
+    right: 46%;
+    bottom: 74%;
+    background-color: whitesmoke;
+    font-weight: bolder;
+}
+
+.deleteButton:hover{
+    background-color: #f33;
+    color: whitesmoke;
+}

@@ -1,8 +1,6 @@
 
 import { useState } from "react";
 import { auth, db } from "../config/firebase";
-import { signOut } from "firebase/auth";
-import { useNavigate } from "react-router";
 import { onValue, ref, push, remove} from "firebase/database"
 import "./TeamWall.css"
 import { TWPopup } from "./TeamWallPopup";
