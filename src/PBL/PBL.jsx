@@ -1,8 +1,7 @@
-//PBL
-
 import { onValue, push, ref, remove } from "firebase/database"
 import { db } from "../config/firebase"
 import { useState } from "react"
+import "./PBL.css"
 
 export default function PBL(){
     const [PBLlist, setPBLlist] = useState([])
@@ -79,7 +78,7 @@ getPBLlist()
         <div>
             {PBLlist.map((PBL ) => {
                 return(
-                    <div key={PBL.key}>
+                    <div className="paragraph" key={PBL.key}>
                     <h1>{PBL.title}</h1>
                     <p>{PBL.rule}</p>
                     <button onClick={() => deleteRule(PBL.key)}>
