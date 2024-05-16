@@ -57,11 +57,12 @@ export function CalendarWeek(props) {
     const contentCollector = (date) => {
         const reference = ref(db, "Calendar/" + date)
         onValue(reference, (snapshot) => {
+            const date = snapshot.key
             snapshot.forEach((childsnapshot) => {
                 const key = childsnapshot.key
                 if (keys.indexOf(key) == - 1){
                     setKeys(preKeys => [...preKeys, key])
-                    setContentDisplay(prevDisplay => [...prevDisplay, {key: key, time: childsnapshot.val().time, title: childsnapshot.val().title, content: childsnapshot.val().content}])
+                    setContentDisplay(prevDisplay => [...prevDisplay, {key: key, time: childsnapshot.val().time, title: childsnapshot.val().title, content: childsnapshot.val().content, date: date}])
                 }
             })
         }, {onlyOnce: true})
@@ -83,6 +84,7 @@ export function CalendarWeek(props) {
         datesCollector()
         contentCollector(popupDate)
     }
+    contentCollector(popupDate)
     //------------------
 
     // DB Delete content
@@ -165,10 +167,19 @@ export function CalendarWeek(props) {
         const cardDateDisplay = `${day}/${month}/${year}`
         const cardDate = `${day}-${month}-${year}`
 
+
         return (
-            <div className="DayBox" onClick={() => {setPopupDate(cardDate), setPopupState(true), contentCollector(cardDate)}}>
+            <div className="DayBox" onClick={() => {setPopupDate(cardDate), setPopupState(true)}}>
                 <h3>{cardDateDisplay}</h3>
-                <div>test</div>
+                <div>
+                    {contentDisplay.map((item) => {
+                        return (
+                            <div>
+                                
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
         )
     }
@@ -258,7 +269,7 @@ export function CalendarWeek(props) {
                             <div className="ContentContainer">
                                 
                                 <div className="PopupContentDisplayTime">{item.time}</div>
-                                <div className="ContentDisplayTitle" onClick={() => {content = item.content}}>{item.title}</div>
+                                <div className="ContentDisplayTitle">{item.title}</div>
                                 <button className="ContentDisplayDeleteBTN" onClick={() => {contentDelete(item.key)}}>X</button>
                                 <div className="ContentDisplayDescription">{item.content}</div>
                             </div>

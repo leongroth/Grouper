@@ -259,7 +259,7 @@ export function Calendar(props) {
                             <div className="ContentContainer">
                                 
                                 <div className="PopupContentDisplayTime">{item.time}</div>
-                                <div className="ContentDisplayTitle" onClick={() => {content = item.content}}>{item.title}</div>
+                                <div className="ContentDisplayTitle">{item.title}</div>
                                 <button className="ContentDisplayDeleteBTN" onClick={() => {contentDelete(item.key)}}>X</button>
                                 <div className="ContentDisplayDescription">{item.content}</div>
                             </div>
