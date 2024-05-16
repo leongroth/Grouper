@@ -23,9 +23,19 @@ export function CalendarWeek(props) {
         }
 
     const weekday = (new Date(year, selectedMonth, today)).getDay()
+    const [firstDayOfWeekSelected, setFirstDayOfWeekSelected] = useState(today - weekday +1)
+    const [daysInWeekSelected, setDaysInWeekSelected] = useState([])
+
+    const lastWeek = () => {
+        setFirstDayOfWeekSelected(prevFirstDay => (prevFirstDay - 7))
+    }
+
+    const nextWeek = () => {
+        setFirstDayOfWeekSelected(prevFirstDay => (prevFirstDay + 7))
+    }
 
     const renderDate = (id) => {
-
+    
         
 
         return (
@@ -43,7 +53,7 @@ export function CalendarWeek(props) {
             <table className="MonthSelector">
                 <tr>
                     <td>
-                        <button><div className="leftArrow"></div></button>
+                        <button onClick={lastWeek}><div className="leftArrow"></div></button>
                     </td>
 
                     <td>
@@ -51,7 +61,7 @@ export function CalendarWeek(props) {
                     </td>
 
                     <td>
-                        <button><div className="rightArrow"></div></button>
+                        <button onClick={nextWeek}><div className="rightArrow"></div></button>
                     </td>
                 </tr>
             </table>
@@ -85,6 +95,7 @@ export function CalendarWeek(props) {
                 </tr>
                 
             </table>
+            <div style={testStyle}>{firstDayOfWeekSelected}</div>
         </div>
     ) : ""
 }
@@ -95,4 +106,9 @@ const todayStyle = {
 
 const notTodayStyle = {
 
+}
+
+
+const testStyle = {
+    fontSize: "100px",
 }
