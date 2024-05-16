@@ -1,5 +1,8 @@
 import { useState } from "react";
 import './CalendarWeekView.css'
+import { db } from "../config/firebase";
+import { onValue, ref, push, remove } from "firebase/database";
+import { CalPopup } from "./CalendarPopup";
 
 export function CalendarWeek(props) {
     const date = new Date()
@@ -22,7 +25,90 @@ export function CalendarWeek(props) {
 
     const weekday = (new Date(year, month - 1, today)).getDay()
     const [firstDayOfWeekSelected, setFirstDayOfWeekSelected] = useState(today - weekday +1)
-    const [daysInWeekSelected, setDaysInWeekSelected] = useState([])
+
+
+    const [popupState, setPopupState] = useState(false)
+    const [popupDate, setPopupDate] = useState("")
+
+
+    // DB dates collector
+
+    const [dates, setDates] = useState([])
+
+    const datesCollector = () => {
+        const reference = ref(db, "Calendar/")
+        onValue(reference, (snapshot) => {
+            snapshot.forEach((childsnapshot) => {
+                const date = childsnapshot.key 
+                const content = childsnapshot.val().content
+                if (dates.indexOf(date) == -1 ){
+                    setDates(prevDates => [...prevDates, date])
+                }
+            })
+        }, {onlyOnce: true})
+    }
+    datesCollector()
+    //----------------
+    
+    // DB content collector
+    const [keys, setKeys] = useState([])
+    const [contentDisplay, setContentDisplay] = useState([])
+
+    const contentCollector = (date) => {
+        const reference = ref(db, "Calendar/" + date)
+        onValue(reference, (snapshot) => {
+            snapshot.forEach((childsnapshot) => {
+                const key = childsnapshot.key
+                if (keys.indexOf(key) == - 1){
+                    setKeys(preKeys => [...preKeys, key])
+                    setContentDisplay(prevDisplay => [...prevDisplay, {key: key, time: childsnapshot.val().time, title: childsnapshot.val().title, content: childsnapshot.val().content}])
+                }
+            })
+        }, {onlyOnce: true})
+    }
+    //---------------------
+
+    // DB Content Setter
+    const [time, setTime] = useState("")
+    const [content, setContent] = useState("")
+    const [title, setTitle] = useState("")
+
+    const contentSetter = (date, time, content, title) => {
+        const reference = ref(db, "Calendar/" + date)
+        push(reference, {
+            time: time,
+            title: title,
+            content: content
+        })
+        datesCollector()
+        contentCollector(popupDate)
+    }
+    //------------------
+
+    // DB Delete content
+    const contentDelete = (id) => {
+        const reference = ref(db, "Calendar/" + `${popupDate}/` + id)
+        remove(reference)
+        const newContents = []
+        contentDisplay.map((item) => {
+            if (item.key != id){
+                newContents.push(item)
+            }
+        },
+        setContentDisplay(newContents)
+    )
+    }
+    //------------------
+
+
+
+
+
+
+
+
+
+
 
     const lastWeek = () => {
         if(firstDayOfWeekSelected - 7 < 0){
@@ -62,10 +148,26 @@ export function CalendarWeek(props) {
     const renderDate = (id) => {
     
         
+        var day = firstDayOfWeekSelected + id - 1
+        var month = selectedMonth 
+        var year = selectedYear
+
+
+        if (day > daysInMonth(selectedYear, selectedMonth)){
+            day = day - daysInMonth(selectedYear, selectedMonth)
+            month = selectedMonth + 1
+            if (month > 12){
+                month = 1
+                year = selectedYear + 1
+            }
+        }
+
+        const cardDateDisplay = `${day}/${month}/${year}`
+        const cardDate = `${day}-${month}-${year}`
 
         return (
-            <div className="DayBox">
-                <h3>{daysOfWeek[id -1]}</h3>
+            <div className="DayBox" onClick={() => {setPopupDate(cardDate), setPopupState(true), contentCollector(cardDate)}}>
+                <h3>{cardDateDisplay}</h3>
                 <div>test</div>
             </div>
         )
@@ -96,6 +198,15 @@ export function CalendarWeek(props) {
             
             <table className="CalendarWeekBox">
                 <tr>
+                    <td className="DayIndicator">M</td>
+                    <td className="DayIndicator">T</td>
+                    <td className="DayIndicator">W</td>
+                    <td className="DayIndicator">T</td>
+                    <td className="DayIndicator">F</td>
+                    <td className="DayIndicator">S</td>
+                    <td className="DayIndicator">S</td>
+                </tr>
+                <tr>
                     <td>
                         {renderDate(1)}
                     </td>
@@ -119,10 +230,44 @@ export function CalendarWeek(props) {
                     </td>
                 </tr>
                 
+                <CalPopup trigger={popupState} setTrigger={setPopupState}>
+                <button className="PopupCloseBTN" onClick={() => {setPopupState(false), setContentDisplay([]), setKeys([]), setDates([]), datesCollector()}}>Close</button>
+                <h2>{popupDate}</h2>
+
+                
+                <table className="PopupInputContainer">
+                    <tr>
+                        <div className="AddActivity">Add activity</div>
+                    </tr>
+                    <tr>
+                        <input className="TimeInput" type="time" onChange={(e) => {setTime(e.target.value)}} />
+                        <input className="ContentTitleINP" placeholder="Event Title" type="text" onChange={(e) => {setTitle(e.target.value)}}/>
+                    </tr>
+                    <tr>
+                        <textarea className="DescriptionBox" placeholder="Type your activity here" onChange={(e) => {setContent(e.target.value)}}/>
+                    </tr>
+                    <tr>
+                        <button className="ContentSubmitBTN" onClick={() => { 
+                            contentSetter(popupDate, time, content, title)
+                        }}>Submit plan</button>
+                    </tr>
+                </table>
+                <div className="PopupContentDisplay">
+                    {contentDisplay.map((item) => {
+                        return (
+                            <div className="ContentContainer">
+                                
+                                <div className="PopupContentDisplayTime">{item.time}</div>
+                                <div className="ContentDisplayTitle" onClick={() => {content = item.content}}>{item.title}</div>
+                                <button className="ContentDisplayDeleteBTN" onClick={() => {contentDelete(item.key)}}>X</button>
+                                <div className="ContentDisplayDescription">{item.content}</div>
+                            </div>
+                        )
+                    })}
+                </div>
+            </CalPopup>
+
             </table>
-            
-            <div style={testStyle}> {firstDayOfWeekSelected} - {selectedMonth} - {selectedYear} </div>
-            <div style={testStyle}>{today}</div>
         </div>
     ) : ""
 }
