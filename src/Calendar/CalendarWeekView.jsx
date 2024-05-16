@@ -26,6 +26,8 @@ export function CalendarWeek(props) {
 
     const renderDate = (id) => {
 
+        
+
         return (
             <div className="DayBox">
                 <h3>{daysOfWeek[id -1]}</h3>
@@ -60,47 +62,37 @@ export function CalendarWeek(props) {
             <table className="CalendarWeekBox">
                 <tr>
                     <td>
-                        
+                        {renderDate(1)}
                     </td>
                     <td>
-                        <div className="DayBox">
-                            <h3>Tuesday</h3>
-                            <div>{renderDate(2)}</div>
-                        </div>
+                        {renderDate(2)}
                     </td>
                     <td>
-                        <div className="DayBox">
-                            <h3>Wednesday</h3>
-                            <div>{renderDate(3)}</div>
-                        </div>
+                        {renderDate(3)}
                     </td>
                     <td>
-                        <div className="DayBox">
-                            <h3>Thursday</h3>
-                            <div>{renderDate(4)}</div>
-                        </div>
+                        {renderDate(4)}
                     </td>
                     <td>
-                        <div className="DayBox">
-                            <h3>Friday</h3>
-                            <div>{renderDate(5)}</div>
-                        </div>
+                        {renderDate(5)}
                     </td>
                     <td>
-                        <div className="DayBox">
-                            <h3>Satturdat</h3>
-                            <div>{renderDate(6)}</div>
-                        </div>
+                        {renderDate(6)}
                     </td>
                     <td>
-                        <div className="DayBox">
-                            <h3>Sunday</h3>
-                            <div>{renderDate(7)}</div>
-                        </div>
+                        {renderDate(7)}
                     </td>
                 </tr>
                 
             </table>
         </div>
     ) : ""
+}
+
+const todayStyle = {
+    background: "#38caff"
+}
+
+const notTodayStyle = {
+
 }
