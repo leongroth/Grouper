@@ -2,3 +2,17 @@ h1{
     font-size: 150%;
     font-weight: bolder;
 }
+.addNote {
+    display: flex;
+    justify-content: center; /* Centers the content horizontally */
+    align-items: center;     /* Centers the content vertically */
+    border-radius: 50%;      /* Use 50% for a circular shape */
+    font-size: 300%;
+    font-weight: bolder;
+    background-color: whitesmoke;
+    width: 150px;             
+    height: 150px;            
+    margin-top: 5%;
+    line-height: 1;    
+    margin-left: 50%;
+}

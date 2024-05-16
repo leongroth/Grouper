@@ -81,7 +81,7 @@ getDescriptionList()
 
   return (
     <>
-    <button onClick={() => {setTwPopupState(true)}}>open popup</button>
+    <button className="addNote" onClick={() => {setTwPopupState(true)}}>+</button>
     <TWPopup trigger={twPopupState}>
      <textarea  type="text" value={inputValue}  placeholder="Write description" onChange={handleInputChange} />
      <button onClick={()=> {setTwPopupState(false)}}>luk</button>
@@ -107,11 +107,10 @@ getDescriptionList()
 }
 
  const textStyle1=  {
-    width: "40%",
-    height: "fill",
+    width: "50%",
+    height: "50%",
     background: "#ff8b94",
-    margin: "5em",
-    marginRight: "25em", 
+    marginLeft: "25%", 
     boxShadow: "5px 5px 12px 0.2px #535353",
 }
 
@@ -119,7 +118,6 @@ const textStyle2={
     width: "40%",
     height: "fill",
     background: "#1b85b8",
-    margin: "5em",
-    marginLeft: "25em",
+    marginLeft: "50%",
     boxShadow: "5px 5px 12px 0.2px #535353",
 } 
