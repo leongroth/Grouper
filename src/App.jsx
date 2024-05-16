@@ -45,15 +45,17 @@ function App() {
         <tr>
           <td className='contenttest'>
             <button>
-              <a href={'/login'}>login</a>
+              <a href={'/login'}>Login</a>
             </button>
           </td>
           <td className='contenttest'>
             <button>
-                <a href={'/signup'}>register</a>
+                <a href={'/signup'}>Register</a>
             </button>
-          </td>
+          </td >
+          <td className='contenttest'>
           <button onClick={logout}>Sign out</button>
+          </td>
         </tr>
       </table>
 
