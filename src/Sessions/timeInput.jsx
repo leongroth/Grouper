@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Spinner from "./spinner"; // the spinner component
-import './App.css';
+import './Timeinput.css';
 
 const TimeInput = () => {
   const [value, setValue] = useState("00:00:00");
@@ -91,7 +91,7 @@ const TimeInput = () => {
     if (countdownStarted && secondsRemaining > 0) {
       const totalSeconds = getSecondsFromHHMMSS(value);
       const minutesPassed = (totalSeconds - secondsRemaining) / 60;
-      if (minutesPassed % 25 === 0 && minutesPassed !== 0) { // checks if 25 minutes passed
+      if (minutesPassed % 0.25 === 0 && minutesPassed !== 0) { // checks if 25 minutes passed
         setShowBreakWheel(true);
         setIsToggled(true);
         setIsActive(false); // Pause the countdown
