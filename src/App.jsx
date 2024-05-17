@@ -95,6 +95,13 @@ function App() {
             </button>
           </td>
         </tr>
+        <tr>
+          <td className='contenttest'>
+            <button>
+              <a href="/Session">Session</a>
+            </button>
+          </td>
+        </tr>
       </table>
         
       </div>
@@ -105,12 +112,7 @@ function App() {
   )
 }
 
-const navbarStyle = {
-  width: "200px",
-  background: "#C7C7C7",
-  marginLeft:"1000px",
 
-}
 const testStyle = {
   width:"20px",
   height:"20px",

@@ -1,0 +1,54 @@
+input {
+    background-color: rgba(96, 108, 110, 0.15);
+    height: 40px;
+    padding: 10px 10px;
+    color: #606c6e;
+    font-size: 30px;
+    outline: 0 solid transparent;
+    border: 0 solid transparent;
+    width: 100%;
+    border-radius: 4px;
+    letter-spacing: -0.4px;
+    padding: 10px 18px;
+    width: 200px;
+  }
+  
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 30px;
+    text-align: center;
+  }
+  
+  .Timer {
+    font-size: large;
+    margin: auto;
+    height: 40px;
+    padding: 10px 10px;
+    color: #606c6e;
+    font-size: 30px;
+    outline: 0 solid transparent;
+    border: 0 solid transparent;
+    width: 100%;
+    border-radius: 4px;
+    letter-spacing: -0.4px;
+    padding: 10px 18px;
+    width: 200px;
+  }
+  
+  .SessionsCompleted {
+    margin: auto;
+    background: linear-gradient(135deg, #A3CDFF, #96E276);
+    height: 45px;
+    padding: 10px 10px;
+    color: #000;
+    font-size: 20px;
+    outline: 0 solid transparent;
+    border: 0 solid transparent;
+    width: 100%;
+    border-radius: 4px;
+    letter-spacing: -0.4px;
+    padding: 10px 10px;
+    width: 200px;
+  }
+  
+  
