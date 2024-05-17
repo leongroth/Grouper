@@ -59,14 +59,18 @@ export function Calendar(props) {
     const contentCollector = (date) => {
         const reference = ref(db, "Calendar/" + date)
         onValue(reference, (snapshot) => {
+            const date = snapshot.key
             snapshot.forEach((childsnapshot) => {
                 const key = childsnapshot.key
+                const time = childsnapshot.val().time
+                const timecode = Number(time[0] + time[1] + time[3] + time[4])
                 if (keys.indexOf(key) == - 1){
                     setKeys(preKeys => [...preKeys, key])
-                    setContentDisplay(prevDisplay => [...prevDisplay, {key: key, time: childsnapshot.val().time, title: childsnapshot.val().title, content: childsnapshot.val().content}])
+                    setContentDisplay(prevDisplay => [...prevDisplay, {key: key, time: childsnapshot.val().time, timecode: timecode, title: childsnapshot.val().title, content: childsnapshot.val().content, date: date}])
                 }
             })
         }, {onlyOnce: true})
+        contentDisplay.sort((a, b) => (a.timecode > b.timecode) ? 1 : -1)
     }
     //---------------------
 

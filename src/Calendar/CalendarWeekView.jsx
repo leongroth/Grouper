@@ -60,12 +60,15 @@ export function CalendarWeek(props) {
             const date = snapshot.key
             snapshot.forEach((childsnapshot) => {
                 const key = childsnapshot.key
+                const time = childsnapshot.val().time
+                const timecode = Number(time[0] + time[1] + time[3] + time[4])
                 if (keys.indexOf(key) == - 1){
                     setKeys(preKeys => [...preKeys, key])
-                    setContentDisplay(prevDisplay => [...prevDisplay, {key: key, time: childsnapshot.val().time, title: childsnapshot.val().title, content: childsnapshot.val().content, date: date}])
+                    setContentDisplay(prevDisplay => [...prevDisplay, {key: key, time: childsnapshot.val().time, timecode: timecode, title: childsnapshot.val().title, content: childsnapshot.val().content, date: date}])
                 }
             })
         }, {onlyOnce: true})
+        contentDisplay.sort((a, b) => (a.timecode > b.timecode) ? 1 : -1)
     }
     //---------------------
 
@@ -84,7 +87,6 @@ export function CalendarWeek(props) {
         datesCollector()
         contentCollector(popupDate)
     }
-    contentCollector(popupDate)
     //------------------
 
     // DB Delete content
@@ -148,7 +150,7 @@ export function CalendarWeek(props) {
     }
 
     const renderDate = (id) => {
-    
+        var classStyle = "DayBox"
         
         var day = firstDayOfWeekSelected + id - 1
         var month = selectedMonth 
@@ -167,17 +169,30 @@ export function CalendarWeek(props) {
         const cardDateDisplay = `${day}/${month}/${year}`
         const cardDate = `${day}-${month}-${year}`
 
+        if(cardDate == currentDate){
+            classStyle = "TodayBox"
+        }
 
+        dates.map((item) => {
+            if(item == cardDate){
+                contentCollector(cardDate)
+            }
+
+        })
+        
         return (
-            <div className="DayBox" onClick={() => {setPopupDate(cardDate), setPopupState(true)}}>
+            <div className={classStyle} onClick={() => {setPopupDate(cardDate), setPopupState(true), contentCollector(cardDate)}}>
                 <h3>{cardDateDisplay}</h3>
-                <div>
-                    {contentDisplay.map((item) => {
-                        return (
-                            <div>
-                                
-                            </div>
-                        )
+                <div className="WeekViewQuickContentBox">
+                    {
+                    contentDisplay.map((item) => {
+                        if(item.date == cardDate){
+                            return (
+                                <div className="WeekViewQuickContent">
+                                    {item.time} : {item.title}
+                                </div>
+                            )
+                        }
                     })}
                 </div>
             </div>
@@ -265,15 +280,17 @@ export function CalendarWeek(props) {
                 </table>
                 <div className="PopupContentDisplay">
                     {contentDisplay.map((item) => {
-                        return (
-                            <div className="ContentContainer">
-                                
-                                <div className="PopupContentDisplayTime">{item.time}</div>
-                                <div className="ContentDisplayTitle">{item.title}</div>
-                                <button className="ContentDisplayDeleteBTN" onClick={() => {contentDelete(item.key)}}>X</button>
-                                <div className="ContentDisplayDescription">{item.content}</div>
-                            </div>
-                        )
+                        if(item.date == popupDate){
+                            return (
+                                <div className="ContentContainer">
+                                    
+                                    <div className="PopupContentDisplayTime">{item.time}</div>
+                                    <div className="ContentDisplayTitle">{item.title}</div>
+                                    <button className="ContentDisplayDeleteBTN" onClick={() => {contentDelete(item.key)}}>X</button>
+                                    <div className="ContentDisplayDescription">{item.content}</div>
+                                </div>
+                            )
+                        }
                     })}
                 </div>
             </CalPopup>
