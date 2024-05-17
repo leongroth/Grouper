@@ -91,7 +91,7 @@ getPBLlist()
         <div className="paragraph">
             {PBLlist.map((PBL ) => {
                 return(
-                    <div  key={PBL.key}>
+                    <div className="paragraph1"  key={PBL.key}>
                         <h1 className="Title">{PBL.title}</h1>
                         <p className="Rule">{PBL.rule}</p>
                         <button className="deleteButton" onClick={() => deleteRule(PBL.key)}>

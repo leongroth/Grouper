@@ -6,6 +6,9 @@
     border: 2px solid black;
     border-radius: 10px;
 }
+.paragraph1{
+    border: 1px solid black;
+}
 
 .PBLButtons{
     margin-top: 2%;
