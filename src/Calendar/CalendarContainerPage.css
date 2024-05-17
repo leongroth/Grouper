@@ -1,5 +1,4 @@
 .TopContainer {
-    background-color: orange;
     width: 100%;
     height: 20%;
     position: absolute;
@@ -7,7 +6,6 @@
 }
 
 .CalendarViewContainer {
-    background-color: purple;
     position: absolute;
     top: 20%;
     left: 0%;
