@@ -28,8 +28,8 @@ export function CalendarContainerPage() {
     return (
         <div>
             <div className="TopContainer">
-                <h1>Calendar</h1>
-                <p>Manage your tasks and sessions</p>
+                <h1 className="CalendarTitle">Calendar</h1>
+                <p className="CalendarSubtitle">Manage your tasks and sessions</p>
 
 
                 <div className="form-box">
