@@ -30,7 +30,9 @@ export function CalendarContainerPage() {
             <div className="TopContainer">
                 <h1 className="CalendarTitle">Calendar</h1>
                 <p className="CalendarSubtitle">Manage your tasks and sessions</p>
+                <br/>
 
+                <br/>
 
                 <div className="form-box">
                     <div className="button-box">
