@@ -76,7 +76,6 @@
 }
 
 .contenttest {
-  background-color: blue;
   height: 10%;
   width: 10vw;
 }
@@ -93,4 +92,58 @@
   height: fill;
   width: 80%;
   background-color: white;
+}
+
+.NavCalendarButton, .NavTeamwallButton, .NavPBLButton, .NavPointsButton, .NavSessionButton {
+  background-color: white;
+  border: solid 6px blue;
+  border-radius: 100px;
+  width: 90px;
+  height: 90px;
+}
+
+.NavButtonRow{
+  position: relative;
+  left: 64%;
+}
+
+.CalendarHoverText , .TeamwallHoverText, .PBLHoverText, .PointsHoverText, .SessionHoverText {
+  display: none;
+}
+
+.NavCalendarButton:hover + .CalendarHoverText{
+  display: block;
+  position: absolute;
+  top: 12%;
+  left: 65%;
+}
+
+
+
+.NavTeamwallButton:hover + .TeamwallHoverText {
+  display: block;
+  position: absolute;
+  left: 65%;
+  top: 19.5%;
+}
+
+.NavPBLButton:hover + .PBLHoverText {
+  display: block;
+  position: absolute;
+  left: 65%;
+  top: 27%;
+}
+
+.NavPointsButton:hover + .PointsHoverText {
+  display: block;
+  position: absolute;
+  left: 65%;
+  top: 34%;
+}
+
+.NavSessionButton:hover + .SessionHoverText {
+  display: block;
+  position: absolute;
+  left: 65%;
+  top: 41.5%;
 }

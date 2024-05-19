@@ -3,6 +3,12 @@ import { Outlet, useNavigate } from 'react-router'
 import { auth } from './config/firebase'
 import { useEffect, useState } from 'react'
 import { signOut } from 'firebase/auth'
+import CalendarIcon from "./assets/calender-icon.svg"
+import TeamWallIcon from "./assets/teamwall-icon.svg"
+import PBLIcon from "./assets/PBL-icon.svg"
+import PointsIcon from "./assets/Points-icon.svg"
+import SessionsIcon from "./assets/Sessions-icon.svg"
+
 
 
 
@@ -63,41 +69,56 @@ function App() {
       <table className='NavBarTable'> 
         <tr>
           <td className='contenttest'>
-            <button>
-              <a href="/Calendar">Calendar</a>
-            </button>
+              <button className='NavCalendarButton'>
+                <a href="/Calendar">
+                  <img src={CalendarIcon} />
+                </a>
+              </button>
+              <h2 className='CalendarHoverText'>Calendar</h2>
           </td>
         </tr>
         
         <tr>
           <td className='contenttest'>
-            <button>
-              <a href="/Teamwall">Teamwall</a>
+            <button className='NavTeamwallButton'>
+              <a href="/Teamwall">
+                <img src={TeamWallIcon} />
+              </a>
             </button>
+            <h2 className='TeamwallHoverText'>Team wall</h2>
           </td>
         </tr>
 
         <tr>
           <td className='contenttest'>
-            <button>
-              <a href='/PBL'>PBL</a>
+            <button className='NavPBLButton'>
+              <a href='/PBL'>
+                <img src={PBLIcon} />
+              </a>
             </button>
+            <h2 className='PBLHoverText'>PBL</h2>
           </td>
         </tr>
 
         <tr>
           <td className='contenttest'>
-            <button>
-              <a href='/Points'>Points</a>
+            <button className='NavPointsButton'>
+              <a href='/Points'>
+                <img src={PointsIcon}/>
+              </a>
             </button>
+            <h2 className='PointsHoverText'>Points</h2>
           </td>
         </tr>
         
         <tr>
           <td className='contenttest'>
-            <button>
-              <a href="/Session">Session</a>
+            <button className='NavSessionButton'>
+              <a href="/Session">
+                <img src={SessionsIcon} />
+              </a>
             </button>
+            <h2 className='SessionHoverText'>Session</h2>
           </td>
         </tr>
       </table>
