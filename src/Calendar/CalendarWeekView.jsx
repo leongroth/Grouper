@@ -25,6 +25,7 @@ export function CalendarWeek(props) {
 
     const weekday = (new Date(year, month - 1, today)).getDay()
     const [firstDayOfWeekSelected, setFirstDayOfWeekSelected] = useState(today - weekday +1)
+    const [selectedWeek, setSelectedWeek] = useState(`${firstDayOfWeekSelected}/${selectedMonth} - ${firstDayOfWeekSelected + 6}/${selectedMonth}`)
 
 
     const [popupState, setPopupState] = useState(false)
@@ -210,7 +211,7 @@ export function CalendarWeek(props) {
                     </td>
 
                     <td>
-                        <div className="monthTitle">Week 8</div>
+                        <div className="monthTitle">{}</div>
                     </td>
 
                     <td>
