@@ -5,6 +5,10 @@
     left: 5%;
 }
 
+.calendarWeekPage {
+    background-color: pink;
+}
+
 .DayBox {
     background-color: #c2efff;
     width: 10vW;
@@ -38,7 +42,9 @@
     font-weight: 500;
 }
 
-
+.monthTitle {
+    width: 7vW;
+}
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 .WeekViewQuickContentBox::-webkit-scrollbar {
