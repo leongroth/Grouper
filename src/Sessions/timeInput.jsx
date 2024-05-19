@@ -102,9 +102,9 @@ const TimeInput = () => {
   return (
     <div>
       <h1 style={{ color: "black", width:"60%"}}>Sessions</h1>
-      <h5 style={{ color: '#A3CDFF' }}>Hr : Min : Secs</h5>
+      <h5 className="HrMinSecIndication">Hr : Min : Secs</h5>
       {!sessionCompleted && (
-        <input className="indtast" type="text" onChange={onChange} onBlur={onBlur} value={value} />
+        <input className="inputSessions" type="text" onChange={onChange} onBlur={onBlur} value={value} />
       )}
       <div>
         {showTimer && (
@@ -114,13 +114,13 @@ const TimeInput = () => {
         )}
 
         { !isToggled && (
-        <button onClick={toggleCountdown} style={{ textAlign: "center", margin: "auto" }}>
+        <button onClick={toggleCountdown} className="buttonSessions">
         {countdownStarted ? (!isActive ? 'Resume' : 'pause') : 'Start Session'}
       </button>
         )}
 
         { isToggled && (
-          <button onClick={() => [setIsToggled(false), toggleCountdown()]}> Breaks over </button>
+          <button className="buttonStopBreak" onClick={() => [setIsToggled(false), toggleCountdown()]}> Breaks over </button>
         )}
 
         {isToggled && <Spinner />}

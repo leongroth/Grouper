@@ -51,8 +51,6 @@ getDescriptionList()
 
 
   
-
-
   const addData = async () => {
     const time = `${day}/${month} ${hours}:${minutes}`
     await push(descriptionRef, {
@@ -81,6 +79,14 @@ getDescriptionList()
 
   return (
     <>
+          <div>
+            <h1 className="overskrift">
+                TeamWall
+            </h1>
+            <p className="suboverskrift">
+                Add personal notes for your study members to see and check off if needed
+            </p>
+        </div>
     <button className="addNote" onClick={() => {setTwPopupState(true)}}>+</button>
     <TWPopup trigger={twPopupState}>
      <textarea  type="text" value={inputValue}  placeholder="Write description" onChange={handleInputChange} />
@@ -99,9 +105,6 @@ getDescriptionList()
             </div>
         ))}
       </div>
-
-      
-
     </>
   ); 
 }
@@ -110,7 +113,7 @@ getDescriptionList()
     width: "25%",
     height: "25%",
     background: "#ff8b94",
-    marginLeft: "25%", 
+    marginLeft: "15%", 
     boxShadow: "5px 5px 12px 0.2px #535353",
 }
 
@@ -118,6 +121,6 @@ const textStyle2={
     width: "25%",
     height: "25%",
     background: "#1b85b8",
-    marginLeft: "45%",
+    marginLeft: "55%",
     boxShadow: "5px 5px 12px 0.2px #535353",
 } 

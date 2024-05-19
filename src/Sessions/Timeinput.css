@@ -1,4 +1,4 @@
-.indtast {
+.inputSessions {
     background-color: rgba(96, 108, 110, 0.15);
     height: 40px;
     padding: 10px 10px;
@@ -13,13 +13,26 @@
     width: 200px;
   }
   
+.HrMinSecIndication {
+  font-size: large;
+}
 
+.buttonSessions {
+  color: #000;
+  background-color: #A3CDFF;
+  margin: 25px 20px;
+
+}
+
+.buttonStopBreak {
+  margin: 25px 20px;
+}
   
   .Timer {
     font-size: large;
     margin: auto;
     height: 40px;
-    padding: 10px 10px;
+    padding: 20px 20px;
     color: #606c6e;
     font-size: 30px;
     outline: 0 solid transparent;
@@ -34,7 +47,8 @@
   .SessionsCompleted {
     margin: auto;
     background: linear-gradient(135deg, #A3CDFF, #96E276);
-    height: 45px;
+    font-weight: bold;
+    height: 80px;
     padding: 10px 10px;
     color: #000;
     font-size: 20px;
@@ -44,7 +58,7 @@
     border-radius: 4px;
     letter-spacing: -0.4px;
     padding: 10px 10px;
-    width: 200px;
+    width: 250px;
   }
   
   
