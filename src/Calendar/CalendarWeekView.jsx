@@ -211,7 +211,7 @@ export function CalendarWeek(props) {
                     </td>
 
                     <td>
-                        <div className="monthTitle">{}</div>
+                        <div className="monthTitle">{selectedWeek}</div>
                     </td>
 
                     <td>
