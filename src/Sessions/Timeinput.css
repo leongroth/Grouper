@@ -1,4 +1,4 @@
-input {
+.indtast {
     background-color: rgba(96, 108, 110, 0.15);
     height: 40px;
     padding: 10px 10px;
@@ -13,11 +13,7 @@ input {
     width: 200px;
   }
   
-  body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 30px;
-    text-align: center;
-  }
+
   
   .Timer {
     font-size: large;

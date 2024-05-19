@@ -43,6 +43,7 @@
 }
 .deleteButton{
     position: relative;
+    bottom: 55%;
     margin-right: 100%;
     background-color: whitesmoke;
     font-weight: bolder;
