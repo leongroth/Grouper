@@ -185,6 +185,15 @@ export function Calendar(props) {
             <br></br>
             <table className="Calendar">
                 <tr>
+                    <td className="DayIndicator">M</td>
+                    <td className="DayIndicator">T</td>
+                    <td className="DayIndicator">W</td>
+                    <td className="DayIndicator">T</td>
+                    <td className="DayIndicator">F</td>
+                    <td className="DayIndicator">S</td>
+                    <td className="DayIndicator">S</td>
+                </tr>
+                <tr>
                     <td className="monthDayCards">{renderMonth(1)}</td>
                     <td className="monthDayCards">{renderMonth(2)}</td>
                     <td className="monthDayCards">{renderMonth(3)}</td>
