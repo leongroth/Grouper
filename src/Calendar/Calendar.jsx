@@ -147,6 +147,12 @@ export function Calendar(props) {
             todayStyle = currentDayStyle
         }
 
+        dates.map((item) => {
+            if(item == date){
+                contentCollector(date)
+            }
+        })
+
         return (
             <div style={todayStyle} className={style} onClick={() => {setPopupDate(date), setPopupState(true), contentCollector(date)}}>
                 <div className="calendarDay">{day}</div>
@@ -259,15 +265,18 @@ export function Calendar(props) {
                 </table>
                 <div className="PopupContentDisplay">
                     {contentDisplay.map((item) => {
-                        return (
-                            <div className="ContentContainer">
-                                
-                                <div className="PopupContentDisplayTime">{item.time}</div>
-                                <div className="ContentDisplayTitle">{item.title}</div>
-                                <button className="ContentDisplayDeleteBTN" onClick={() => {contentDelete(item.key)}}>X</button>
-                                <div className="ContentDisplayDescription">{item.content}</div>
-                            </div>
-                        )
+                        if(item.date == popupDate){
+                            return (
+                                <div className="ContentContainer">
+                                    
+                                    <div className="PopupContentDisplayTime">{item.time}</div>
+                                    <div className="ContentDisplayTitle">{item.title}</div>
+                                    <button className="ContentDisplayDeleteBTN" onClick={() => {contentDelete(item.key)}}>X</button>
+                                    <div className="ContentDisplayDescription">{item.content}</div>
+                                    <div>{item.timecode}</div>
+                                </div>
+                            )
+                        }
                     })}
                 </div>
             </CalPopup>
