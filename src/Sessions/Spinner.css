@@ -72,7 +72,7 @@
   
   .arrow{
     position: absolute;
-    top: 28%;
+    top: 35%;
     left: 50%;
     transform: translateX(-50%);
     color: #4195FF;
@@ -85,7 +85,6 @@
   
   #spin{
     position: absolute;
-    text-align-last: justify;
     top: 65%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -106,8 +105,9 @@
   
   .colored-toast .swal2-title {
     color: black;
-   
   }
+
+
 
   
   
