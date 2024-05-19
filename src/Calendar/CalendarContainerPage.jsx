@@ -39,13 +39,6 @@ export function CalendarContainerPage() {
                         <button type="button" className="toggle-btn" onClick={toggleRight} >Month</button>
                     </div>
                 </div>
-
-
-
-                
-            </div>
-
-            <div className="CalendarViewContainer">
                 <Calendar trigger={isMonthView}/>
                 <CalendarWeek trigger={isWeekView}/>
             </div>
