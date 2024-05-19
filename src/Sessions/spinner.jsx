@@ -34,13 +34,12 @@ function Spinner() {
     const displayToast = async (activity) => { 
         const Toast = Swal.mixin({
           toast: true,
-          position: 'center',
           iconColor: 'white',
           customClass: {
             popup: 'colored-toast',
           },
           showConfirmButton: false,
-          timer: 3000,
+          timer: 5000,
           timerProgressBar: true,
         });
     
