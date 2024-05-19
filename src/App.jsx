@@ -20,7 +20,6 @@ function App() {
   };
 
   const [logUser, setLogUser] = useState("")
-  const [style, setStyle] = useState(testStyle1)
 
   useEffect(() => {
     const isLogged = auth.onAuthStateChanged(user => {
@@ -111,20 +110,5 @@ function App() {
   )
 }
 
-
-const testStyle = {
-  width:"20px",
-  height:"20px",
-  borderRadius:"20px",
-  background:"green"
-
-}
-const testStyle1 = {
-  width:"20px",
-  height:"20px",
-  borderRadius:"20px",
-  background:"black"
-
-}
 
 export default App
