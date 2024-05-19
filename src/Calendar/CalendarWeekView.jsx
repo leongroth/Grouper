@@ -126,9 +126,16 @@ export function CalendarWeek(props) {
 
             setSelectedMonth(newMonth)
             setFirstDayOfWeekSelected((daysInMonth(selectedYear, newMonth)) + (firstDayOfWeekSelected - 7))
-            setSelectedWeek(
-                `${(daysInMonth(selectedYear, newMonth)) + (firstDayOfWeekSelected - 7)}/${newMonth} - ${(firstDayOfWeekSelected - 1)}/${selectedMonth}`
-            )
+            if(firstDayOfWeekSelected-1 > 0){
+                setSelectedWeek(
+                    `${(daysInMonth(selectedYear, newMonth)) + (firstDayOfWeekSelected - 7)}/${newMonth} - ${(firstDayOfWeekSelected - 1)}/${selectedMonth}`
+                )
+            }
+            else {
+                setSelectedWeek(
+                    `${(daysInMonth(selectedYear, newMonth)) + (firstDayOfWeekSelected - 7)}/${newMonth} - ${(daysInMonth(selectedYear, newMonth) + (firstDayOfWeekSelected - 1))}/${newMonth}`
+                )
+            }
             
         }
         else {
@@ -152,16 +159,21 @@ export function CalendarWeek(props) {
             setSelectedMonth(newMonth)
             setFirstDayOfWeekSelected((firstDayOfWeekSelected + 7) - (daysInMonth(year, newMonth -1)))
             setSelectedWeek(
-                `${(firstDayOfWeekSelected + 7) - (daysInMonth(year, newMonth -1))}/${newMonth} - ${firstDayOfWeekSelected + 14}/${newMonth}`
+                `${(firstDayOfWeekSelected + 7) - (daysInMonth(selectedYear, newMonth -1))}/${newMonth} - ${(firstDayOfWeekSelected + 13) - daysInMonth(selectedYear, selectedMonth)}/${newMonth}`
             )
         }
         else {
             setFirstDayOfWeekSelected(firstDayOfWeekSelected +7)
-            if(firstDayOfWeekSelected + 14 > daysInMonth(selectedYear, selectedMonth)){
+            if(firstDayOfWeekSelected + 13 > daysInMonth(selectedYear, selectedMonth)){
                 setSelectedWeek(
-                    `${(firstDayOfWeekSelected + 7)}/${selectedMonth} - ${(firstDayOfWeekSelected + 13) - (daysInMonth(year, selectedMonth))}/${selectedMonth + 1}`
+                    `${firstDayOfWeekSelected + 7}/${selectedMonth} - ${(firstDayOfWeekSelected + 13) - daysInMonth(selectedYear, selectedMonth)}/${selectedMonth + 1}`
                 )
-            } 
+            }
+            else {
+                setSelectedWeek(
+                    `${firstDayOfWeekSelected + 7}/${selectedMonth} - ${firstDayOfWeekSelected + 13}/${selectedMonth}`
+                )
+            }
         }
     }
 
