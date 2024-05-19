@@ -104,7 +104,7 @@ const TimeInput = () => {
       <h1 style={{ color: "black" }}>Sessions</h1>
       <h5 style={{ color: '#A3CDFF' }}>Hr : Min : Secs</h5>
       {!sessionCompleted && (
-        <input type="text" onChange={onChange} onBlur={onBlur} value={value} />
+        <input className="indtast" type="text" onChange={onChange} onBlur={onBlur} value={value} />
       )}
       <div>
         {showTimer && (

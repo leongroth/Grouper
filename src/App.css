@@ -42,16 +42,11 @@
 }
 
 
-body {
-  border: solid 2px red;
-}
-
 .NavbarContainer {
-  position: absolute;
+  position: fixed;
   top: 0%;
   left: 0%;
   min-height: 100vh;
-  height: fill;
   width: 20%;
   background-color: burlywood;
 }
@@ -83,7 +78,7 @@ body {
 .contenttest {
   background-color: blue;
   height: 10%;
-  width: fit-content;
+  width: 10vw;
 }
 
 .NavBarTable {

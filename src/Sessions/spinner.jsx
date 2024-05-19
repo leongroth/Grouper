@@ -67,8 +67,8 @@ function Spinner() {
     
 
   return (
-    <body>
-        <div>
+
+        <div className="body105">
         <button id="spin" onClick={handleClick} disabled={spinning}>
             Spin
         </button>
@@ -80,7 +80,7 @@ function Spinner() {
             <div className='four'> Go for a walk </div>
         </div>
         </div>
-    </body>
+
   );
 }
 
