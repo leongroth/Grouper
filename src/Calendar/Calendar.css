@@ -1,7 +1,6 @@
 .calendarpage {
-    position: absolute;
-    top: 2%;
-    height: 80vh;
+
+    height: fit-content;
 }
 
 
