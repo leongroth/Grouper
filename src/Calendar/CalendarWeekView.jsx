@@ -126,9 +126,16 @@ export function CalendarWeek(props) {
 
             setSelectedMonth(newMonth)
             setFirstDayOfWeekSelected((daysInMonth(selectedYear, newMonth)) + (firstDayOfWeekSelected - 7))
+            setSelectedWeek(
+                `${(daysInMonth(selectedYear, newMonth)) + (firstDayOfWeekSelected - 7)}/${newMonth} - ${(firstDayOfWeekSelected - 1)}/${selectedMonth}`
+            )
+            
         }
         else {
             setFirstDayOfWeekSelected(firstDayOfWeekSelected - 7)
+            setSelectedWeek(
+                `${firstDayOfWeekSelected - 7}/${selectedMonth} - ${firstDayOfWeekSelected - 1}/${selectedMonth}`
+            )
         }
     }
 
@@ -144,9 +151,17 @@ export function CalendarWeek(props) {
 
             setSelectedMonth(newMonth)
             setFirstDayOfWeekSelected((firstDayOfWeekSelected + 7) - (daysInMonth(year, newMonth -1)))
+            setSelectedWeek(
+                `${(firstDayOfWeekSelected + 7) - (daysInMonth(year, newMonth -1))}/${newMonth} - ${firstDayOfWeekSelected + 14}/${newMonth}`
+            )
         }
         else {
             setFirstDayOfWeekSelected(firstDayOfWeekSelected +7)
+            if(firstDayOfWeekSelected + 14 > daysInMonth(selectedYear, selectedMonth)){
+                setSelectedWeek(
+                    `${(firstDayOfWeekSelected + 7)}/${selectedMonth} - ${(firstDayOfWeekSelected + 13) - (daysInMonth(year, selectedMonth))}/${selectedMonth + 1}`
+                )
+            } 
         }
     }
 
