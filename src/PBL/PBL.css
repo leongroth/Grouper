@@ -32,19 +32,16 @@
 .Title{
     font-size: x-large;
     position: relative;
-    left: 8%;
 }
 .Rule{
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     position: relative;
-    left: 8%;
     width: 92%; 
 }
 .deleteButton{
     position: relative;
-    bottom: 55%;
-    margin-right: 100%;
+    bottom: 60%;
     background-color: whitesmoke;
     font-weight: bolder;
 }
@@ -81,4 +78,10 @@ right: 18%;
 }
 .inputFields{
     border: 1px solid black;
+}
+.overskrift{
+    width: 60%;
+}
+.suboverskrift{
+    width: 60%;
 }

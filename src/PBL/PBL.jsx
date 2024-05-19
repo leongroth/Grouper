@@ -61,10 +61,10 @@ getPBLlist()
     return(
         <>
         <div>
-            <h1>
+            <h1 className="overskrift">
                 PBL
             </h1>
-            <p>
+            <p className="suboverskrift">
                 Find help to your project or update the group contract
             </p>
         </div>
