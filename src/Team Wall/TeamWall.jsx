@@ -90,9 +90,9 @@ getDescriptionList()
       <div>
       {descriptionList.map((teamwall, index) => (
           <div style={styles[(index+2)%2]} key={teamwall.key}>
-            <h1 className="h1">{[teamwall.userEmail]}</h1>
-            <p>{teamwall.description}</p>
+            <p className="descriptionthing">{teamwall.description}</p>
             <p>{[teamwall.timeStamp]}</p>
+            <p className="emailthing">{[teamwall.userEmail]}</p>
             <button onClick={() => deleteDescription(teamwall.key)}>
               Clear Note
             </button>
@@ -107,16 +107,16 @@ getDescriptionList()
 }
 
  const textStyle1=  {
-    width: "50%",
-    height: "50%",
+    width: "25%",
+    height: "25%",
     background: "#ff8b94",
     marginLeft: "25%", 
     boxShadow: "5px 5px 12px 0.2px #535353",
 }
 
 const textStyle2={
-    width: "50%",
-    height: "fill",
+    width: "25%",
+    height: "25%",
     background: "#1b85b8",
     marginLeft: "45%",
     boxShadow: "5px 5px 12px 0.2px #535353",

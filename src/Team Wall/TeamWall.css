@@ -1,12 +1,15 @@
-h1{
-    font-size: 150%;
+.emailthing{
+    position: relative;
     font-weight: bolder;
+    margin-right: 100%;
+    margin-bottom: 2%;
 }
+
 .addNote {
     display: flex;
-    justify-content: center; /* Centers the content horizontally */
-    align-items: center;     /* Centers the content vertically */
-    border-radius: 50%;      /* Use 50% for a circular shape */
+    justify-content: center; 
+    align-items: center;    
+    border-radius: 50%;      
     font-size: 300%;
     font-weight: bolder;
     background-color: whitesmoke;
@@ -14,5 +17,8 @@ h1{
     height: 150px;            
     margin-top: 5%;
     line-height: 1;    
-    margin-left: 50%;
+    margin-left: 45%;
+}
+.descriptionthing{
+    width: 92%;
 }
