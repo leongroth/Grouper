@@ -44,7 +44,6 @@
 .deleteButton{
     position: relative;
     margin-right: 100%;
-    bottom: 67%;
     background-color: whitesmoke;
     font-weight: bolder;
 }
@@ -58,6 +57,7 @@
     position: relative;
     border: 1px solid black;
     margin-bottom: 10%;
+    right: 18%;
 }
 
 .ruleInp{
@@ -66,11 +66,12 @@
     margin-bottom: 10%;
     width: 150%;
     height: 150px;
-    right: 30%;
+    right: 40%;
 }
 
 .submit{
 position: relative;
+right: 18%;
 
 }
 .tableClass{
