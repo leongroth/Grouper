@@ -60,6 +60,7 @@ getDescriptionList()
       userEmail: user,
     });
     setInputValue("")
+    setTwPopupState(false)
   };
 
 
@@ -90,8 +91,7 @@ getDescriptionList()
     <button className="addNote" onClick={() => {setTwPopupState(true)}}>+</button>
     <TWPopup trigger={twPopupState}>
      <textarea  type="text" value={inputValue}  placeholder="Write description" onChange={handleInputChange} />
-     <button onClick={()=> {setTwPopupState(false)}}>luk</button>
-      <button onClick={addData}>Show input</button>
+      <button onClick={ addData}>Post Note</button>
       </TWPopup>
       <div>
       {descriptionList.map((teamwall, index) => (
