@@ -80,9 +80,10 @@
 
 .PopupContentDisplay {
     width: 50%;
-    height: 61%;
+    height: 60%;
     position: absolute;
     left: 10px;
+    background-color: blue;
 }
 
 .ContentDisplayItem {
