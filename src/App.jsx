@@ -25,10 +25,8 @@ function App() {
   useEffect(() => {
     const isLogged = auth.onAuthStateChanged(user => {
       if (user) {
-        setStyle(testStyle);
         setLogUser(auth.currentUser.email)
       } else {
-        setStyle(testStyle1);
         setLogUser("")
       }
     });
@@ -40,7 +38,7 @@ function App() {
   return (
     <>
       <div className='NavbarContainer'>
-        <div style={style}></div>
+        <div >{logUser}</div>
       <table className='loginRegisterTable'>
         <tr>
           <td className='contenttest'>
