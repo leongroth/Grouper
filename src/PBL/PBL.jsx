@@ -78,10 +78,10 @@ getPBLlist()
         </div>
         <table className="tableClass">
             <tr>
-            <input className="titleInp" type="text" placeholder="Write title of rule here" onChange={handleTitleChange} value={titleValue} />
+            <input className="titleInp" type="text" placeholder=" Title here" onChange={handleTitleChange} value={titleValue} />
             </tr>
             <tr>
-            <textarea className="ruleInp" type="text" placeholder="Write description of rule here" onChange={handleRuleChange} value={ruleValue}/>
+            <textarea className="ruleInp" type="text" placeholder="Write description of rule/addition to group contract here" onChange={handleRuleChange} value={ruleValue}/>
             </tr>
             <tr>
             <button className="submit" onClick={AddRule}>Submit Rule</button>

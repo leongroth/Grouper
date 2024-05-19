@@ -115,9 +115,9 @@ getDescriptionList()
 }
 
 const textStyle2={
-    width: "40%",
+    width: "50%",
     height: "fill",
     background: "#1b85b8",
-    marginLeft: "50%",
+    marginLeft: "45%",
     boxShadow: "5px 5px 12px 0.2px #535353",
 } 
