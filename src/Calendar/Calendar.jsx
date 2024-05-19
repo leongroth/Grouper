@@ -273,7 +273,6 @@ export function Calendar(props) {
                                     <div className="ContentDisplayTitle">{item.title}</div>
                                     <button className="ContentDisplayDeleteBTN" onClick={() => {contentDelete(item.key)}}>X</button>
                                     <div className="ContentDisplayDescription">{item.content}</div>
-                                    <div>{item.timecode}</div>
                                 </div>
                             )
                         }

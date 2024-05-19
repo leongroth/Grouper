@@ -83,7 +83,8 @@
     height: 60%;
     position: absolute;
     left: 10px;
-    background-color: blue;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .ContentDisplayItem {
@@ -95,7 +96,7 @@
     border-radius: 15px;
     padding: 10px;
     font-weight: bold;
-    width: 12%;
+    width: fit-content;
     text-align: center;
     position: relative;
     top: 5px;
@@ -125,7 +126,7 @@ td {
     font-weight: bolder;
     color: white;
     position: relative;
-    left: 45%;
+    left: 44%;
     top: -70px;
 }
 
@@ -142,3 +143,15 @@ td {
     margin-bottom: 10px;
     height: fit-content;
 }
+
+
+
+.PopupContentDisplay::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .PopupContentDisplay {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
