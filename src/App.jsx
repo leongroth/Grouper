@@ -57,7 +57,7 @@ function App() {
             </button>
           </td >
           <td className='contenttest'>
-          <button onClick={logout}>Sign out</button>
+          <button onClick={logout}>Signout</button>
           </td>
         </tr>
       </table>
