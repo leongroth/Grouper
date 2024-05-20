@@ -96,7 +96,7 @@
 
 .NavCalendarButton, .NavTeamwallButton, .NavPBLButton, .NavPointsButton, .NavSessionButton {
   background-color: white;
-  border: solid 6px blue;
+  border: solid 6px #4195FF;
   border-radius: 100px;
   width: 90px;
   height: 90px;
@@ -113,37 +113,82 @@
 
 .NavCalendarButton:hover + .CalendarHoverText{
   display: block;
-  position: absolute;
-  top: 12%;
-  left: 65%;
 }
 
 
 
 .NavTeamwallButton:hover + .TeamwallHoverText {
   display: block;
-  position: absolute;
-  left: 65%;
-  top: 19.5%;
 }
 
 .NavPBLButton:hover + .PBLHoverText {
   display: block;
-  position: absolute;
-  left: 65%;
-  top: 27%;
 }
 
 .NavPointsButton:hover + .PointsHoverText {
   display: block;
-  position: absolute;
-  left: 65%;
-  top: 34%;
 }
 
 .NavSessionButton:hover + .SessionHoverText {
   display: block;
-  position: absolute;
-  left: 65%;
-  top: 41.5%;
+}
+
+.NavCalendarButton, .CalendarHoverText {
+  position: relative;
+  left: 38%;
+  float: left;
+  display: inline none;
+}
+
+.CalendarHoverText{
+  position: relative;
+  left: 43%;
+}
+
+.NavTeamwallButton, .TeamwallHoverText {
+  position: relative;
+  left: 38%;
+  float: left;
+  display: inline none;
+}
+
+.TeamwallHoverText{
+  position: relative;
+  left: 43%;
+}
+
+.NavPBLButton, .PBLHoverText {
+  position: relative;
+  left: 38%;
+  float: left;
+  display: inline none;
+}
+
+.PBLHoverText{
+  position: relative;
+  left: 43%;
+}
+
+.NavPointsButton, .PointsHoverText {
+  position: relative;
+  left: 38%;
+  float: left;
+  display: inline none;
+}
+
+.PointsHoverText{
+  position: relative;
+  left: 43%;
+}
+
+.NavSessionButton, .SessionHoverText {
+  position: relative;
+  left: 38%;
+  float: left;
+  display: inline none;
+}
+
+.SessionHoverText{
+  position: relative;
+  left: 43%;
 }

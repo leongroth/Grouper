@@ -311,5 +311,5 @@ const notCurrentDayStyle = {
 }
 
 const currentDayStyle = {
-    background: "#38caff"
+    background: "#4195FF"
 }

@@ -50,9 +50,9 @@ export function CalendarContainerPage() {
 }
 
 const leftToggled = {
-    left: '6px'
+    left: '6px',
 }
 
 const rightToggled = {
-    left: '136px'
+    left: '136px',
 }
