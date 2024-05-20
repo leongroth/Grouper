@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Spinner from "./spinner"; // the spinner component
 import './Timeinput.css';
+import {db} from '../config/firebase'
+import { push, ref } from "firebase/database";
 
 const TimeInput = () => {
   const [value, setValue] = useState("00:00:00");
@@ -11,6 +13,19 @@ const TimeInput = () => {
   const [showBreakWheel, setShowBreakWheel] = useState(false); // triggers when to show breakwheel
   const [isActive, setIsActive] = useState(true);
   const [isToggled, setIsToggled] = useState(false);
+
+  // Add points To DB
+  const date = new Date()
+  const todaysDate = `${date.getDay()}-${date.getMonth() + 1}-${date.getFullYear()}`
+
+  const addPoints = () => {
+    const reference = ref(db, "/Points")
+    push(reference, {
+      date: todaysDate,
+      points: 100
+    })
+  }
+  //-----------------
 
   const onChange = (event) => { // updates the value state after user input
     setValue(event.target.value);
@@ -44,6 +59,7 @@ const TimeInput = () => {
             clearInterval(interval);
             setCountdownStarted(false);
             setSessionsCompleted(true);
+            addPoints()
             return 0;
           }
         });
@@ -126,7 +142,7 @@ const TimeInput = () => {
         {isToggled && <Spinner />}
 
 
-        {sessionCompleted && <div className="SessionsCompleted">Session completed <br /> 100 points</div>}
+        {sessionCompleted && <div className="SessionsCompleted">Session completed <br /> 100 points </div>}
       </div>
     </div>
   );

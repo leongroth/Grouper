@@ -3,9 +3,11 @@ import './Spinner.css';
 import Swal from 'sweetalert2' //library for displaying toats
 
 
+
 function Spinner() {
   const containerRef = useRef(null); //ref to the spinning wheel container div
   const [spinning, setSpinning] = useState(false); //whether it spins or not
+
 
   //triggers the spin
   const handleClick = async () => {
@@ -47,7 +49,6 @@ function Spinner() {
           icon: 'success',
           title: activity,
         });
-
       };
     
     //determines the activity based on angle
