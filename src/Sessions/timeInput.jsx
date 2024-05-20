@@ -17,11 +17,13 @@ const TimeInput = () => {
   // Add points To DB
   const date = new Date()
   const currentMonth = date.getMonth() +1 
+  const currentDay = date.getDate()
 
   const addPoints = () => {
     const reference = ref(db, "/Points")
     push(reference, {
       month: currentMonth,
+      day: currentDay,
       points: 100
     })
   }
