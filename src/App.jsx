@@ -19,48 +19,55 @@ function App() {
   const logout = async () => {
     try {
       await signOut(auth);
-      navigate("/login")
+      navigate("/Login")
     } catch (err) {
       console.error(err);
     }
   };
 
   const [logUser, setLogUser] = useState("")
+  const [logRegister, setLogRegister] = useState(false)
 
   useEffect(() => {
     const isLogged = auth.onAuthStateChanged(user => {
       if (user) {
         setLogUser(auth.currentUser.email)
+        setLogRegister(false)
       } else {
         setLogUser("")
+        setLogRegister(true)
       }
     });
 
     return () => isLogged(); 
   }, [])
 
-
   return (
     <>
       <div className='NavbarContainer'>
         <div >{logUser}</div>
-      <table className='loginRegisterTable'>
-        <tr>
-          <td className='contenttest'>
-            <button>
-              <a href={'/login'}>Login</a>
-            </button>
-          </td>
-          <td className='contenttest'>
-            <button>
-                <a href={'/signup'}>Register</a>
-            </button>
-          </td >
-          <td className='contenttest'>
-          <button onClick={logout}>Signout</button>
-          </td>
-        </tr>
-      </table>
+        <table className='loginRegisterTable'>
+          <tr>
+            {logRegister ? (
+              <>
+                <td className='contenttest'>
+                  <button>
+                    <a href={'/login'}>Login</a>
+                  </button>
+                </td>
+                <td className='contenttest'>
+                  <button>
+                    <a href={'/signup'}>Register</a>
+                  </button>
+                </td>
+              </>
+            ) : (
+              <td className='contenttest'>
+                <button onClick={logout}>Signout</button>
+              </td>
+            )}
+          </tr>
+        </table>
 
       <br/>
       <br/>
