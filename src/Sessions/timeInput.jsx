@@ -17,7 +17,7 @@ const TimeInput = () => {
   // Add points To DB
   const date = new Date()
   const currentMonth = date.getMonth() +1 
-  const currentDay = date.getDate()
+  const currentDay = `${date.getDate()}-${currentMonth}-${date.getFullYear()}`
 
   const addPoints = () => {
     const reference = ref(db, "/Points")
