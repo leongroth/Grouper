@@ -1,7 +1,29 @@
 .TP-Box , .M-Sesh, .D-Sesh {
-    background-color: #C7C7c7;
+    background-color: #c2efff;
     font-size: 30px;
-    border: solid 2px black;
-    border-radius: 10px;
+    border: solid 5px #4195FF;
+    border-radius: 1000px;
     padding: 20px;
+    width: 300px;
+    height: 300px;
+    align-content: center;
+    position: relative;
+    left: 20%;
+}
+
+.PointCardsTable{
+    width: 100%;
+    position: absolute;
+    top: 30%;
+}
+
+.TP-Header, .M-Header, .D-Header {
+    font-size: 30px;
+    width: 300px;
+    position: relative;
+    left: 20%;
+}
+
+.PointsTableItem {
+    align-items: center;
 }

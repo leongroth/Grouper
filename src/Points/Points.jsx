@@ -9,28 +9,27 @@ export function PointsPage() {
 
     return (
         <div>
-            <table>
-                <th>
+            <h1>Points</h1>
+            <p>Earn Points by completing study sessions</p>
+            <table className="PointCardsTable" >
+                <th className="PointsTableItem">
+                    <div className="TP-Header">Total Points</div>
                     <div className="TP-Box">
-                    Total Points
-                    <br></br>
-                    {totalPoints}
+                        <div>{totalPoints}</div>
                     </div>
                 </th>
 
-                <th>
+                <th className="PointsTableItem">
+                    <div className="M-Header">Sessions this month</div>
                     <div className="M-Sesh">
-                    Sessions this month
-                    <br/>
-                    {sessionsMonth}
+                        <div>{sessionsMonth}</div>
                     </div>
                 </th>
 
-                <th>
+                <th className="PointsTableItem">
+                    <div className="D-Header">Sessions today</div>
                     <div className="D-Sesh">
-                    Sessions today
-                    <br></br>
-                    {sessionsDay}
+                        <div>{sessionsDay}</div>
                     </div>
                 </th>
             </table>
