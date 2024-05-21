@@ -48,7 +48,7 @@
   left: 0%;
   height: 100vh;
   width: 20%;
-  background-color: burlywood;
+  background-color: #C7C7C7;
 }
 
 .test {
@@ -72,7 +72,6 @@
 .loginRegisterTable {
   width: 100%;
   height: fit-content;
-  background-color: red;
 }
 
 .contenttest {
@@ -191,4 +190,8 @@
 .SessionHoverText{
   position: relative;
   left: 43%;
+}
+
+.LogoImage {
+  width: 100%;
 }

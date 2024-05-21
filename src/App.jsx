@@ -8,6 +8,7 @@ import TeamWallIcon from "./assets/teamwall-icon.svg"
 import PBLIcon from "./assets/PBL-icon.svg"
 import PointsIcon from "./assets/Points-icon.svg"
 import SessionsIcon from "./assets/Sessions-icon.svg"
+import Logo from './assets/Logo.svg'
 
 
 
@@ -43,6 +44,9 @@ function App() {
   return (
     <>
       <div className='NavbarContainer'>
+      <div>
+        <img src={Logo} className='LogoImage'/>
+      </div>
         <div >{logUser}</div>
       <table className='loginRegisterTable'>
         <tr>
