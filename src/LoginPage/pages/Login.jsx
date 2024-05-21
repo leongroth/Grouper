@@ -12,7 +12,7 @@ export default function Login ()  {
         try {
             await signInWithEmailAndPassword(auth, email, password);  
             alert(email + "  is signed in")
-            navigate("/teamwall")
+            navigate("/Calendar")
         }
         catch(err){
         console.error(err)
