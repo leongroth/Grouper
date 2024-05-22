@@ -29,7 +29,7 @@ export default function Tekstskriver() {
         setKeyList(prevKeyList => [...prevKeyList, key])
       }
     })
-  },{onlyOnce:true})
+  },{onlyOnce:false})
 }
 
 getDescriptionList()

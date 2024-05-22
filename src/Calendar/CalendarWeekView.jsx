@@ -46,7 +46,7 @@ export function CalendarWeek(props) {
                     setDates(prevDates => [...prevDates, date])
                 }
             })
-        }, {onlyOnce: true})
+        }, {onlyOnce: false})
     }
     datesCollector()
     //----------------
@@ -68,7 +68,7 @@ export function CalendarWeek(props) {
                     setContentDisplay(prevDisplay => [...prevDisplay, {key: key, time: childsnapshot.val().time, timecode: timecode, title: childsnapshot.val().title, content: childsnapshot.val().content, date: date}])
                 }
             })
-        }, {onlyOnce: true})
+        }, {onlyOnce: false})
         contentDisplay.sort((a, b) => (a.timecode > b.timecode) ? 1 : -1)
     }
     //---------------------
