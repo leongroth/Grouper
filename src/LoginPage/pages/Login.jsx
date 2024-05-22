@@ -21,7 +21,7 @@ export default function Login ()  {
 
     return(
      <div>
-        <h1>Sign In Here !</h1>
+        <h1>Sign In Here </h1>
         <input 
         placeholder="email" 
         onChange={(e) => setEmail(e.target.value)}/>
