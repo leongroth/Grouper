@@ -22,3 +22,14 @@
 .descriptionthing{
     width: 92%;
 }
+
+.closeButton{
+    background-color: whitesmoke;
+    font-weight: bolder;
+    float: right;
+}
+
+.closeButton:hover{
+    background-color: #f33;
+    color: whitesmoke;
+}

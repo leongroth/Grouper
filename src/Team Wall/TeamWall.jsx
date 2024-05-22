@@ -92,6 +92,7 @@ getDescriptionList()
     <TWPopup trigger={twPopupState}>
      <textarea  type="text" value={inputValue}  placeholder="Write description" onChange={handleInputChange} />
       <button onClick={ addData}>Post Note</button>
+      <button className="closeButton"onClick={()  =>  setTwPopupState(false)}>X</button>
       </TWPopup>
       <div>
       {descriptionList.map((teamwall, index) => (
