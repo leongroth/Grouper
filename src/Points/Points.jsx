@@ -38,8 +38,8 @@ export function PointsPage() {
 
     return (
         <div>
-            <h1>Points</h1>
-            <p>Earn Points by completing study sessions</p>
+            <h1 className="overskrift">Points</h1>
+            <p className="suboverskrift">Earn Points by completing study sessions</p>
             <table className="PointCardsTable" >
                 <th className="PointsTableItem">
                     <div className="TP-Header">Total Points</div>

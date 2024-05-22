@@ -119,8 +119,8 @@ const TimeInput = () => {
 
   return (
     <div>
-      <h1 style={{ color: "black", width:"60%"}}>Sessions</h1>
-      <p className="suboverskift"> Start a study session to get the whole team focused</p>
+      <h1 className="overskrift">Sessions</h1>
+      <p className="suboverskrift"> Start a study session to get the whole team focused</p>
       <h5 className="HrMinSecIndication">Hr : Min : Secs</h5>
       {!sessionCompleted && (
         <input className="inputSessions" type="text" onChange={onChange} onBlur={onBlur} value={value} />
