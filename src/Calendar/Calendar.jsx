@@ -47,7 +47,7 @@ export function Calendar(props) {
                     setDates(prevDates => [...prevDates, date])
                 }
             })
-        }, {onlyOnce: true})
+        }, {onlyOnce: false})
     }
     datesCollector()
     //----------------
