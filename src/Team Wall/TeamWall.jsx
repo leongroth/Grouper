@@ -29,9 +29,8 @@ export default function Tekstskriver() {
         setKeyList(prevKeyList => [...prevKeyList, key])
       }
     })
-  },{onlyOnce:false})
+  },{onlyOnce:true})
 }
-
 getDescriptionList()
 
   const now = new Date()
