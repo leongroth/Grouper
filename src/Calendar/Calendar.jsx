@@ -69,7 +69,7 @@ export function Calendar(props) {
                     setContentDisplay(prevDisplay => [...prevDisplay, {key: key, time: childsnapshot.val().time, timecode: timecode, title: childsnapshot.val().title, content: childsnapshot.val().content, date: date}])
                 }
             })
-        }, {onlyOnce: false})
+        }, {onlyOnce: true})
         contentDisplay.sort((a, b) => (a.timecode > b.timecode) ? 1 : -1)
     }
     //---------------------
