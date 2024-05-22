@@ -24,7 +24,7 @@ export default function Signup ()  {
 
     return(
      <div>
-        <h1>Register Here !</h1>
+        <h1>Register Here </h1>
         <input 
         placeholder="email" 
         onChange={(e) => setEmail(e.target.value)}/>
@@ -34,12 +34,6 @@ export default function Signup ()  {
         onChange={(e) => setPassword(e.target.value)}/>
         <button onClick={register}>Register </button>
 
-        <button>
-            <a href={'/login'}>login</a>
-        </button>
-        <button>
-            <a href={'/signup'}>register</a>
-        </button>
     </div>
 );
 }

@@ -56,7 +56,7 @@ function App() {
               <>
                 <td className='contenttest'>
                   <button>
-                    <a href={'/login'}>Login</a>
+                    <a href={'/login'}>Sign in</a>
                   </button>
                 </td>
                 <td className='contenttest'>
